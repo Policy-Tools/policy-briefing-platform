@@ -2,96 +2,174 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Beleidsbriefingplatform</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Beleidsbriefingplatform</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+<body class="homepage" data-mode="logged-out">
 
-<body>
-
-<header>
-    <h1>Beleidsbriefingplatform</h1>
-    <nav class="main-nav">
-        <a href="dashboard/">Dashboard</a>
-        <a href="briefings/">Briefings</a>
-        <a href="topics/">Thema's</a>
-        <a href="onboarding/">Profiel</a>
-    </nav>
+<header class="site-header">
+    <div class="site-header-inner">
+        <div>
+            <p class="eyebrow">Beleid in een oogopslag</p>
+            <h1>Beleidsbriefingplatform</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="briefings/">Briefings</a>
+            <a href="topics/">Thema's</a>
+            <a href="onboarding/">Profiel</a>
+        </nav>
+    </div>
 </header>
 
-<main>
+<main class="homepage-shell">
+    <aside class="personal-sidebar" id="personal-sidebar" aria-hidden="true">
+        <div class="sidebar-header">
+            <div>
+                <p class="eyebrow">Persoonlijke modus</p>
+                <h2>Jouw feed</h2>
+            </div>
+            <button class="icon-button" id="sidebar-close" type="button" aria-label="Zijbalk sluiten">Sluiten</button>
+        </div>
 
-<section class="hero">
-    <h2>AI-ondersteunde beleidsbriefings</h2>
-    <p>
-        Een platform dat open broninformatie uit beleids-, overheids-
-        en internationale bronnen verzamelt en omzet in
-        beknopte briefings en audio-updates.
-    </p>
+        <section class="sidebar-section">
+            <h3>Filters</h3>
+            <div class="filter-pills">
+                <button type="button" class="pill active">Klimaat</button>
+                <button type="button" class="pill">Zorg</button>
+                <button type="button" class="pill">Digitale overheid</button>
+                <button type="button" class="pill">Europa</button>
+            </div>
+        </section>
 
-    <div class="hero-buttons">
-        <a class="button" href="briefings/">Bekijk voorbeeldbriefings</a>
-        <a class="button secondary" href="topics/">Verken onderwerpen</a>
+        <section class="sidebar-section">
+            <h3>Snelle briefing</h3>
+            <p>Start direct een compacte briefing op basis van je laatst gevolgde dossiers.</p>
+            <a class="button" href="briefings/">Maak snelle briefing</a>
+        </section>
+
+        <section class="sidebar-section">
+            <h3>Persoonlijke signalen</h3>
+            <ul class="sidebar-list">
+                <li>3 nieuwe updates over circulaire economie</li>
+                <li>1 Kamerbrief gemarkeerd als hoge prioriteit</li>
+                <li>2 Europese consultaties sluiten deze week</li>
+            </ul>
+        </section>
+    </aside>
+
+    <div class="homepage-main">
+        <section class="hero hero-home">
+            <div class="hero-copy">
+                <p class="eyebrow">Nieuwe homepage</p>
+                <h2>Volg nieuws en beleidsontwikkelingen zonder ruis</h2>
+                <p>
+                    Deze startpagina laat in uitgelogde modus het belangrijkste algemene nieuws en beleidsupdates zien.
+                    Zodra een gebruiker is ingelogd, verschijnt een compacte werkmodus met persoonlijke feed, filters en een snelle briefingactie.
+                </p>
+            </div>
+
+            <div class="mode-switcher" aria-label="Modusweergave">
+                <span class="mode-label">Weergave</span>
+                <div class="mode-actions">
+                    <button type="button" class="mode-button active" data-mode-target="logged-out">Uitgelogd</button>
+                    <button type="button" class="mode-button" data-mode-target="logged-in">Ingelogd</button>
+                </div>
+                <button type="button" class="button secondary sidebar-toggle" id="sidebar-toggle" hidden>Open persoonlijke zijbalk</button>
+            </div>
+        </section>
+
+        <section class="status-bar">
+            <div>
+                <span class="status-label">Nu zichtbaar</span>
+                <strong id="mode-headline">Algemene nieuwsstroom en beleidsupdates</strong>
+            </div>
+            <p id="mode-description">
+                De homepage toont brede ontwikkelingen voor iedere bezoeker, zonder persoonlijke rangschikking.
+            </p>
+        </section>
+
+        <section class="news-grid" aria-label="Belangrijkste updates">
+            <article class="news-card featured-card">
+                <span class="card-tag">Topnieuws</span>
+                <h3>Europese besluitvorming rond energiezekerheid blijft beleidsagenda bepalen</h3>
+                <p>
+                    Een overzichtskaart van hoofdpunten, reacties uit bestuurslagen en verwachte beleidsmomenten helpt bezoekers snel de context te begrijpen.
+                </p>
+                <a href="briefings/">Lees de samenvatting</a>
+            </article>
+
+            <article class="news-card">
+                <span class="card-tag">Algemene update</span>
+                <h3>Nieuwe landelijke beleidsbrieven gebundeld per thema</h3>
+                <p>Blijf op de hoogte van wijzigingen binnen wonen, zorg, mobiliteit en economische ontwikkeling.</p>
+                <a href="topics/">Bekijk thema's</a>
+            </article>
+
+            <article class="news-card">
+                <span class="card-tag">Beleidsmonitor</span>
+                <h3>Regionale initiatieven rond stikstof en ruimte winnen aan belang</h3>
+                <p>De homepage benadrukt hoofdlijnen, deadlines en bestuurlijke impact in begrijpelijke taal.</p>
+                <a href="dashboard.html">Open dashboard</a>
+            </article>
+        </section>
+
+        <section class="content-mode">
+            <div class="content-panel" data-mode-panel="logged-out">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Voor bezoekers</p>
+                        <h2>Algemene updates zonder personalisatie</h2>
+                    </div>
+                    <a class="text-link" href="topics/">Meer algemene thema's</a>
+                </div>
+
+                <div class="update-list">
+                    <article class="update-item">
+                        <h3>Dagelijkse selectie van topnieuws</h3>
+                        <p>Een brede mix van beleidsnieuws, openbare rapporten en bestuurlijke signalen voor een eerste overzicht.</p>
+                    </article>
+                    <article class="update-item">
+                        <h3>Openbare beleidsupdates</h3>
+                        <p>Nieuwe publicaties en formele aankondigingen worden gebundeld zonder profielspecifieke ranking.</p>
+                    </article>
+                    <article class="update-item">
+                        <h3>Toegang tot voorbeeldbriefings</h3>
+                        <p>Bezoekers kunnen direct zien hoe compacte samenvattingen en audioupdates in het platform werken.</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="content-panel" data-mode-panel="logged-in" hidden>
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Voor ingelogde gebruikers</p>
+                        <h2>Persoonlijke werkmodus op de homepage</h2>
+                    </div>
+                    <a class="text-link" href="dashboard.html">Ga naar volledig dashboard</a>
+                </div>
+
+                <div class="update-list personalized-list">
+                    <article class="update-item highlight">
+                        <h3>Persoonlijke feed</h3>
+                        <p>Relevante dossiers worden hoger geplaatst op basis van gevolgde thema's, bestuurslaag en recente activiteit.</p>
+                    </article>
+                    <article class="update-item highlight">
+                        <h3>Filters binnen handbereik</h3>
+                        <p>De inklapbare zijbalk houdt filters uit beeld tot ze nodig zijn, zodat de homepage rustig blijft.</p>
+                    </article>
+                    <article class="update-item highlight">
+                        <h3>Snelle briefingknop</h3>
+                        <p>Met een klik start een korte briefing voor een vergadering, dossiercheck of dagelijkse stand van zaken.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
     </div>
-</section>
-
-<section class="features">
-    <h2>Wat het platform doet</h2>
-
-    <div class="feature-grid">
-
-        <div class="feature">
-            <h3>Beleidsmonitoring</h3>
-            <p>
-                Volg ontwikkelingen binnen internationale, Europese,
-                nationale en regionale beleidsdomeinen.
-            </p>
-        </div>
-
-        <div class="feature">
-            <h3>AI-samenvattingen</h3>
-            <p>
-                Lange beleidsrapporten en nieuwsartikelen worden omgezet
-                in korte, gestructureerde briefings.
-            </p>
-        </div>
-
-        <div class="feature">
-            <h3>Audiobriefings</h3>
-            <p>
-                Luister naar korte beleidsupdates tijdens het reizen
-                of bij de voorbereiding van vergaderingen.
-            </p>
-        </div>
-
-        <div class="feature">
-            <h3>Persoonlijke feeds</h3>
-            <p>
-                Volg beleidsdomeinen die aansluiten bij je werk,
-                onderzoek of politieke focus.
-            </p>
-        </div>
-
-    </div>
-</section>
-
-<section class="how-it-works">
-    <h2>Hoe het werkt</h2>
-
-    <ol>
-        <li>Selecteer de beleidsdomeinen en bestuurslagen die je volgt.</li>
-        <li>Het platform verzamelt relevante open broninformatie.</li>
-        <li>AI genereert korte briefings en optionele audiosamenvattingen.</li>
-        <li>Je persoonlijke dashboard toont de meest relevante updates.</li>
-    </ol>
-
-</section>
-
-<section class="cta">
-    <h2>Begin met het verkennen van beleidsonderwerpen</h2>
-    <a class="button" href="topics/">Blader door onderwerpen</a>
-</section>
-
 </main>
 
+<script src="js/app.js"></script>
 </body>
 </html>
