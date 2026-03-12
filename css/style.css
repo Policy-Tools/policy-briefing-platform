@@ -45,9 +45,18 @@ header {
     flex-wrap: wrap;
 }
 
-.site-brand h1 {
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
+.site-logo-slot,
+.header-actions {
+    flex: 0 0 180px;
+}
+
+.site-logo-slot {
+    display: block;
+    width: 180px;
+    height: 52px;
+    border-radius: 14px;
+    border: 1px dashed rgba(148, 163, 184, 0.24);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 header h1 {
@@ -55,6 +64,7 @@ header h1 {
 }
 
 .main-nav {
+    flex: 1 1 420px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -91,6 +101,7 @@ header h1 {
 .header-actions {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 12px;
 }
 
@@ -657,7 +668,17 @@ body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
         align-items: flex-start;
     }
 
+    .site-logo-slot,
+    .header-actions {
+        flex-basis: 100%;
+    }
+
+    .header-actions {
+        justify-content: flex-start;
+    }
+
     .main-nav {
+        flex-basis: 100%;
         justify-content: flex-start;
         gap: 14px;
     }
