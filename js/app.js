@@ -1,17 +1,11 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var body = document.body;
-    var modeButtons = document.querySelectorAll("[data-mode-target]");
-    var modePanels = document.querySelectorAll("[data-mode-panel]");
     var modeHeadline = document.getElementById("mode-headline");
     var modeDescription = document.getElementById("mode-description");
     var sidebar = document.getElementById("personal-sidebar");
     var sidebarToggle = document.getElementById("sidebar-toggle");
     var sidebarClose = document.getElementById("sidebar-close");
-
-    if (!modeButtons.length) {
-        return;
-    }
 
     var modeCopy = {
         "logged-out": {
@@ -24,37 +18,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    function setMode(mode) {
-        body.setAttribute("data-mode", mode);
+    function syncHomepageState() {
+        var authState = body.getAttribute("data-auth") || "logged-out";
 
-        modeButtons.forEach(function (button) {
-            var isActive = button.getAttribute("data-mode-target") === mode;
-            button.classList.toggle("active", isActive);
-        });
-
-        modePanels.forEach(function (panel) {
-            panel.hidden = panel.getAttribute("data-mode-panel") !== mode;
-        });
-
-        if (modeHeadline && modeDescription && modeCopy[mode]) {
-            modeHeadline.textContent = modeCopy[mode].headline;
-            modeDescription.textContent = modeCopy[mode].description;
+        if (modeHeadline && modeDescription && modeCopy[authState]) {
+            modeHeadline.textContent = modeCopy[authState].headline;
+            modeDescription.textContent = modeCopy[authState].description;
         }
 
         if (sidebarToggle) {
-            sidebarToggle.hidden = mode !== "logged-in";
+            sidebarToggle.hidden = authState !== "logged-in";
         }
 
         if (sidebar) {
             sidebar.setAttribute("aria-hidden", "true");
         }
     }
-
-    modeButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            setMode(button.getAttribute("data-mode-target"));
-        });
-    });
 
     if (sidebarToggle && sidebar) {
         sidebarToggle.addEventListener("click", function () {
@@ -68,5 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    setMode(body.getAttribute("data-mode") || "logged-out");
+    if (modeHeadline || modeDescription || sidebarToggle) {
+        syncHomepageState();
+    }
 });

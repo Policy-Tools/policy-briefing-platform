@@ -6,7 +6,7 @@
     <title>Home | Beleidsbriefingplatform</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="homepage" data-mode="logged-out">
+<body class="homepage" data-auth="logged-out">
 
 <header class="site-header">
     <div class="site-header-inner">
@@ -21,6 +21,10 @@
             <a href="topics/">Thema's</a>
             <a href="onboarding/">Profiel</a>
         </nav>
+        <div class="header-actions">
+            <a class="button login-link" href="onboarding/">Inloggen</a>
+            <button type="button" class="button secondary sidebar-toggle" id="sidebar-toggle" hidden>Open mijn feed</button>
+        </div>
     </div>
 </header>
 
@@ -66,18 +70,9 @@
                 <p class="eyebrow">Nieuwe homepage</p>
                 <h2>Volg nieuws en beleidsontwikkelingen zonder ruis</h2>
                 <p>
-                    Deze startpagina laat in uitgelogde modus het belangrijkste algemene nieuws en beleidsupdates zien.
-                    Zodra een gebruiker is ingelogd, verschijnt een compacte werkmodus met persoonlijke feed, filters en een snelle briefingactie.
+                    Deze startpagina toont voor bezoekers het belangrijkste algemene nieuws en brede beleidsupdates.
+                    Wanneer een gebruiker is ingelogd, verschijnt een extra knop om een persoonlijke zijbalk open te klappen met feed, filters en een snelle briefingactie.
                 </p>
-            </div>
-
-            <div class="mode-switcher" aria-label="Modusweergave">
-                <span class="mode-label">Weergave</span>
-                <div class="mode-actions">
-                    <button type="button" class="mode-button active" data-mode-target="logged-out">Uitgelogd</button>
-                    <button type="button" class="mode-button" data-mode-target="logged-in">Ingelogd</button>
-                </div>
-                <button type="button" class="button secondary sidebar-toggle" id="sidebar-toggle" hidden>Open persoonlijke zijbalk</button>
             </div>
         </section>
 
@@ -146,7 +141,7 @@
                 <div class="section-heading">
                     <div>
                         <p class="eyebrow">Voor ingelogde gebruikers</p>
-                        <h2>Persoonlijke werkmodus op de homepage</h2>
+                        <h2>Persoonlijke aanvulling op de homepage</h2>
                     </div>
                     <a class="text-link" href="dashboard.html">Ga naar volledig dashboard</a>
                 </div>

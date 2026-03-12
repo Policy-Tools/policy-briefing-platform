@@ -35,6 +35,11 @@ header {
 .site-header-inner {
     max-width: 1280px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-end;
+    flex-wrap: wrap;
 }
 
 header h1 {
@@ -54,6 +59,12 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .eyebrow {
@@ -212,44 +223,12 @@ button.button {
     max-width: 760px;
 }
 
-.mode-switcher {
-    min-width: 260px;
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    border-radius: 12px;
-    padding: 18px;
-}
-
-.mode-label,
 .status-label {
     display: block;
     margin-bottom: 10px;
     font-size: 13px;
     font-weight: 700;
     color: #475569;
-}
-
-.mode-actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 14px;
-}
-
-.mode-button {
-    flex: 1;
-    border: 1px solid #cbd5e1;
-    background: white;
-    color: #0f172a;
-    border-radius: 999px;
-    padding: 10px 14px;
-    font: inherit;
-    cursor: pointer;
-}
-
-.mode-button.active {
-    background: #0f172a;
-    border-color: #0f172a;
-    color: white;
 }
 
 .status-bar {
@@ -425,12 +404,24 @@ button.button {
     padding-left: 18px;
 }
 
-body[data-mode="logged-in"] .sidebar-toggle {
+body[data-auth="logged-in"] .sidebar-toggle {
     display: inline-block;
 }
 
-body[data-mode="logged-in"] .homepage-shell {
-    align-items: flex-start;
+body[data-auth="logged-in"] .login-link {
+    display: none;
+}
+
+body[data-auth="logged-out"] [data-mode-panel="logged-in"] {
+    display: none;
+}
+
+body[data-auth="logged-in"] [data-mode-panel="logged-out"] {
+    display: none;
+}
+
+body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
+    display: block;
 }
 
 /* ===== Responsive ===== */
@@ -468,11 +459,6 @@ body[data-mode="logged-in"] .homepage-shell {
     .news-card {
         padding: 22px;
     }
-
-    .mode-actions {
-        flex-direction: column;
-    }
-
     .personal-sidebar {
         width: 100%;
         flex-basis: auto;
