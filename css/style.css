@@ -1,8 +1,19 @@
+/* ===== Base ===== */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     background-color: #f5f7fa;
+    color: #0f172a;
 }
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* ===== Header / Navigation ===== */
 
 header {
     background-color: #0f172a;
@@ -29,25 +40,10 @@ nav a:hover {
     text-decoration: underline;
 }
 
-main {
-    padding: 40px;
-    max-width: 900px;
-}
-
-.hero {
-    padding: 60px 40px;
-    background: white;
-}
-
-.hero h2 {
-    font-size: 32px;
-}
-
-.hero-buttons {
-    margin-top: 20px;
-}
+/* ===== Buttons ===== */
 
 .button {
+    display: inline-block;
     background: #2563eb;
     color: white;
     padding: 10px 18px;
@@ -60,27 +56,84 @@ main {
     background: #475569;
 }
 
+/* ===== Hero Section ===== */
+
+.hero {
+    padding: 60px;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 700px;
+    line-height: 1.5;
+}
+
+.hero-buttons {
+    margin-top: 20px;
+}
+
+/* ===== Features Section ===== */
+
 .features {
-    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.features h2 {
+    margin-bottom: 25px;
 }
 
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 25px;
 }
 
 .feature {
     background: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 25px;
+    border-radius: 10px;
 }
+
+.feature h3 {
+    margin-top: 0;
+}
+
+/* ===== How It Works ===== */
 
 .how-it-works {
+    background: white;
     padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 40px;
 }
 
+.how-it-works h2 {
+    margin-top: 0;
+}
+
+.how-it-works ol {
+    padding-left: 20px;
+    line-height: 1.7;
+}
+
+/* ===== Call To Action ===== */
+
 .cta {
-    padding: 60px;
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
     text-align: center;
+    margin-bottom: 40px;
+}
+
+.cta h2 {
+    margin-top: 0;
 }
