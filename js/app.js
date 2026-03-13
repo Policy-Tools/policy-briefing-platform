@@ -115,6 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        var strongestOverlayLift = 0;
+
         horizontalSections.forEach(function (section) {
             var track = section.querySelector("[data-horizontal-track]");
             var sticky = section.querySelector(".week-timeline-sticky");
@@ -129,15 +131,25 @@ document.addEventListener("DOMContentLoaded", function () {
             var rect = section.getBoundingClientRect();
             var progress = Math.min(Math.max(-rect.top / totalScrollable, 0), 1);
             var translate = overflow * progress;
+            var sectionVisibility = rect.bottom > 0 && rect.top < window.innerHeight;
 
             section.style.height = window.innerHeight + extraScroll + "px";
             track.style.transform = "translate3d(" + -translate + "px, 0, 0)";
+
+            if (sectionVisibility) {
+                var midCurve = Math.sin(progress * Math.PI);
+                strongestOverlayLift = Math.max(strongestOverlayLift, midCurve);
+            }
         });
+
+        body.style.setProperty("--video-overlay-opacity", String(1 - strongestOverlayLift * 0.26));
     }
 
     if (horizontalSections.length) {
         syncHorizontalSections();
         window.addEventListener("scroll", syncHorizontalSections, { passive: true });
         window.addEventListener("resize", syncHorizontalSections);
+    } else {
+        body.style.setProperty("--video-overlay-opacity", "1");
     }
 });
