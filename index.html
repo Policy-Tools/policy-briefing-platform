@@ -1,251 +1,202 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beleidsbriefing</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2 { font-family: 'Playfair Display', serif; }
-   
-    .splash {
-      position: fixed;
-      inset: 0;
-      background: #0A2540;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      transition: opacity 1.8s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .boot-logo {
-      font-size: 9rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #2A9D8F, #34D399);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-   
-    .rich-bg {
-      background: radial-gradient(circle at 30% 20%, rgba(42,157,143,0.12) 0%, transparent 60%),
-                  radial-gradient(circle at 70% 80%, rgba(168,85,247,0.08) 0%, transparent 60%);
-      background-size: 200% 200%;
-    }
-   
-    .premium-card {
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(42,157,143,0.3);
-      backdrop-filter: blur(20px);
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .premium-card:hover {
-      transform: translateY(-8px);
-      border-color: #2A9D8F;
-      box-shadow: 0 30px 60px -15px rgba(42,157,143,0.4);
-    }
-   
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(10,37,64,0.58);
-      backdrop-filter: blur(32px);
-      border-top: 1px solid rgba(42,157,143,0.25);
-      padding: 24px 0;
-      z-index: 100;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      opacity: 0;
-      transform: translateY(80px);
-      pointer-events: none;
-    }
-    .bottom-nav.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    /* CUSTOM SHIFT – no more broken Tailwind arbitrary */
-    .main-content.shifted {
-      transform: translateX(-420px);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beleidsbriefingplatform</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-[#0A2540] text-white rich-bg min-h-screen">
-  <!-- SPLASH -->
-  <div id="splash" class="splash">
-    <div class="boot-logo">B</div>
-    <div class="mt-8 text-5xl font-bold tracking-tighter text-white">Beleidsbriefing</div>
-    <div class="mt-6 text-xl text-emerald-300">Beleid dat ademt. Jij blijft altijd één stap voor.</div>
-  </div>
-  
-  <!-- MAIN CONTENT -->
-  <div id="main-content" class="main-content transition-transform duration-500 ease-out">
-    <main class="max-w-7xl mx-auto px-8 pt-20 pb-40">
-      <div class="text-center mb-16">
-        <h2 class="text-7xl font-bold tracking-tighter leading-none">Beleid dat ademt.<br>Jij blijft altijd één stap voor.</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <!-- Card 1 -->
-        <div class="premium-card md:col-span-7 p-12 rounded-3xl">
-          <div class="flex items-center gap-4 mb-6">
-            <span class="px-5 py-1 bg-blue-900/80 text-blue-200 text-xs rounded-full">POLITICO</span>
-            <span class="text-xs text-slate-400">13 maart 2026</span>
-          </div>
-          <h3 class="text-4xl font-semibold">Jetten: “Strikes op Iran passen niet in internationaal recht”</h3>
-          <p class="mt-8 text-slate-300 text-lg">Demissionair minister reageert scherp. Kamerdebat morgen. Directe impact op coalitie.</p>
-          <button onclick="window.location.href='briefing.html'" class="mt-10 text-emerald-400 hover:text-emerald-300 font-medium flex items-center gap-2">Volledige briefing openen <i class="fa-solid fa-arrow-right"></i></button>
+
+<body class="homepage" data-auth="logged-out">
+
+<header class="site-header">
+    <div class="site-header-inner">
+        <a class="site-logo-slot" href="index.html" aria-label="Home"></a>
+        <nav class="main-nav">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="briefings/">Briefings</a>
+            <a href="topics/">Thema's</a>
+            <a href="about/">Over ons</a>
+            <a href="onboarding/">Profiel</a>
+        </nav>
+        <div class="header-actions">
+            <a class="button login-link" href="onboarding/">Inloggen</a>
         </div>
-        <!-- Card 2 -->
-        <div class="premium-card md:col-span-5 p-10 rounded-3xl">
-          <div class="text-xs text-emerald-400">SNELLE TOOL</div>
-          <h3 class="text-3xl font-semibold mt-4">Impact Simulator</h3>
-          <p class="text-slate-300 mt-6">Test live hoe een wetsvoorstel jouw dossier verandert.</p>
-          <button class="mt-10 bg-emerald-600 hover:bg-emerald-500 px-10 py-4 rounded-3xl text-sm font-medium">Nu simuleren</button>
-        </div>
-        <!-- Card 3 -->
-        <div class="premium-card md:col-span-4 p-10 rounded-3xl">
-          <div class="text-xs text-red-400">NOS • 12 maart</div>
-          <h3 class="text-2xl font-semibold">Nieuwe coalitie verhoogt defensie naar 3,5% BBP</h3>
-        </div>
-        <!-- Card 4 -->
-        <div class="premium-card md:col-span-4 p-10 rounded-3xl">
-          <div class="text-xs text-purple-400">NRC • 11 maart</div>
-          <h3 class="text-2xl font-semibold">Box 3-belasting volledig hervormd</h3>
-        </div>
-        <!-- Card 5 -->
-        <div class="premium-card md:col-span-4 p-10 rounded-3xl">
-          <div class="text-xs text-emerald-400">NETWERK</div>
-          <h3 class="text-2xl font-semibold">Verbonden denkers</h3>
-          <p class="text-slate-300 mt-4">Ontdek wie hetzelfde dossier volgt als jij.</p>
-        </div>
-        <!-- Card 6 -->
-        <div class="premium-card md:col-span-12 p-10 rounded-3xl">
-          <div class="text-xs text-blue-400">NIEUWE SIGNALEN (3)</div>
-          <div class="grid grid-cols-3 gap-6 mt-6">
-            <div class="bg-slate-800/50 p-4 rounded-2xl">• Kamerbrief circulaire economie</div>
-            <div class="bg-slate-800/50 p-4 rounded-2xl">• EU Green Deal update</div>
-            <div class="bg-slate-800/50 p-4 rounded-2xl">• Pensioenleeftijd wetsvoorstel</div>
-          </div>
-        </div>
-      </div>
+    </div>
+</header>
+
+<div class="homepage-shell">
+    <main class="homepage-main">
+
+        <section class="hero-home">
+            <div class="hero-copy">
+                <p class="eyebrow">Live beleidsmonitor</p>
+                <h2>Beleid dat beweegt, in taal die direct bruikbaar is.</h2>
+                <p>
+                    Volg politieke en bestuurlijke ontwikkelingen in een rustige homepage
+                    die nieuws, duiding en persoonlijke signalen samenbrengt. Ontworpen
+                    voor mensen die snel willen zien wat er speelt, waarom het ertoe doet
+                    en waar ze als eerste moeten kijken.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="button" href="briefings/">Open de nieuwste briefing</a>
+                    <a class="button secondary" href="topics/">Verken thema's</a>
+                </div>
+            </div>
+
+            <aside class="hero-panel" aria-label="Kernsignalen van vandaag">
+                <article class="hero-panel-card">
+                    <p class="eyebrow">Vandaag uitgelicht</p>
+                    <h3>Coalitie, Europa en uitvoerbaarheid in een oogopslag</h3>
+                    <p>
+                        De homepage bundelt nieuwe signalen, beleidsimpact en snelle
+                        briefingacties in een vaste ritmiek die aansluit op de rest van
+                        het platform.
+                    </p>
+                </article>
+
+                <dl class="hero-metrics">
+                    <div>
+                        <dt>Nieuwe signalen</dt>
+                        <dd>14 updates verspreid over klimaat, zorg en digitale overheid.</dd>
+                    </div>
+                    <div>
+                        <dt>Actuele briefing</dt>
+                        <dd>Ministerraad en Kameragenda tonen verhoogde beleidsdruk voor volgende week.</dd>
+                    </div>
+                    <div>
+                        <dt>Persoonlijke modus</dt>
+                        <dd>Verborgen feed met filters, snelle briefing en prioriteitssignalen.</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+
+        <section class="status-bar" aria-labelledby="mode-headline">
+            <div>
+                <span class="status-label">Homepage-status</span>
+                <h2 id="mode-headline">Algemene nieuwsstroom en beleidsupdates</h2>
+                <p id="mode-description">
+                    De homepage toont brede ontwikkelingen voor iedere bezoeker, zonder
+                    persoonlijke rangschikking.
+                </p>
+            </div>
+            <a class="button secondary" href="onboarding/">Persoonlijke modus instellen</a>
+        </section>
+
+        <section class="news-grid" aria-label="Belangrijkste ontwikkelingen">
+            <article class="news-card featured-card">
+                <span class="card-tag">Uitgelichte briefing</span>
+                <h3>Een compacte start van de dag met context, bronnen en bestuurlijke impact</h3>
+                <p>
+                    Open de briefingweergave voor een snelle samenvatting van wat er nu
+                    schuift in politiek, beleid en uitvoering.
+                </p>
+                <a href="briefings/">Bekijk briefings</a>
+            </article>
+
+            <article class="news-card">
+                <span class="card-tag">Snelle tool</span>
+                <h3>Werk vanuit dossiers in plaats van losse berichten</h3>
+                <p>
+                    Orden updates per thema en bestuurslaag, zodat vervolgvragen sneller
+                    naar boven komen in je briefingworkflow.
+                </p>
+                <a class="text-link" href="topics/">Open themapagina's</a>
+            </article>
+
+            <article class="news-card">
+                <span class="card-tag">Overzicht</span>
+                <h3>Van prototype naar duidelijke productstructuur</h3>
+                <p>
+                    De homepage sluit nu weer aan op dezelfde navigatie, visuele taal en
+                    interactiepatronen als de andere onderdelen van het platform.
+                </p>
+                <a class="text-link" href="about/">Lees meer over het platform</a>
+            </article>
+        </section>
+
+        <section class="content-panel" aria-labelledby="updates-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Nieuwe signalen</p>
+                    <h2 id="updates-heading">Wat nu aandacht vraagt</h2>
+                </div>
+                <a class="text-link" href="dashboard.html">Open dashboard</a>
+            </div>
+
+            <div class="update-list">
+                <article class="update-item highlight">
+                    <h3>Kamer en kabinet</h3>
+                    <p>
+                        Nieuwe agenda-updates en debatmomenten zorgen voor direct relevante
+                        briefingverzoeken in meerdere dossiers.
+                    </p>
+                </article>
+
+                <article class="update-item">
+                    <h3>Europese dossiers</h3>
+                    <p>
+                        Consultaties en beleidsvoorstellen vragen om snelle vertaling naar
+                        nationale uitvoerbaarheid en politieke gevoeligheid.
+                    </p>
+                </article>
+
+                <article class="update-item">
+                    <h3>Uitvoering en impact</h3>
+                    <p>
+                        Signalering rond uitvoeringsdruk helpt om briefings niet alleen op
+                        nieuwswaarde, maar ook op praktische gevolgen te rangschikken.
+                    </p>
+                </article>
+            </div>
+        </section>
+
     </main>
-  </div>
+</div>
 
-  <!-- PERMANENT GLOWING PROFILE BUTTON – top right, always visible -->
-  <div id="profileBtn"
-       class="fixed top-8 right-8 z-[150] w-14 h-14 bg-slate-700 hover:bg-emerald-600 hover:scale-110 rounded-3xl flex items-center justify-center text-white font-bold text-2xl shadow-2xl transition-all cursor-pointer border border-emerald-500/30 hover:border-emerald-400"
-       title="Open je persoonlijke dashboard">
-    LJ
-  </div>
-
-  <!-- SUBTLE TRANSPARENT BOTTOM NAV – cursor only -->
-  <nav id="bottomNav" class="bottom-nav flex justify-center items-center gap-16 text-lg font-medium">
-    <a href="#" class="hover:text-emerald-400 transition">Nieuws</a>
-    <a href="#" class="hover:text-emerald-400 transition">Tools</a>
-    <a href="#" class="hover:text-emerald-400 transition">Netwerk</a>
-    <a href="about.html" class="hover:text-emerald-400 transition">Over ons</a>
-    <div onclick="togglePanel()" class="ml-8 w-11 h-11 bg-slate-700 rounded-2xl flex items-center justify-center text-white font-bold cursor-pointer shadow-xl hover:bg-slate-600 transition">LJ</div>
-  </nav>
-
-  <!-- Subtle footer -->
-  <footer class="bg-[#0A2540] py-8 border-t border-white/10 text-center text-xs text-slate-500">
-    © 2026 Beleidsbriefing • Voor politici &amp; beleidsmakers
-  </footer>
-
-  <!-- DASHBOARD PANEL – now with full content so you actually SEE it open -->
-  <div id="panel" class="fixed top-0 right-0 h-full w-[420px] bg-slate-900 border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-500 z-[200] flex flex-col">
-    <div class="p-6 border-b border-slate-700 flex justify-between items-center">
-      <div>
-        <p class="font-medium">Welkom terug, Liv</p>
-        <p class="text-xs text-slate-400">Persoonlijke briefing feed</p>
-      </div>
-      <button onclick="togglePanel()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+<aside class="personal-sidebar floating-feed-panel" aria-hidden="true" data-feed-panel>
+    <div class="sidebar-header">
+        <div>
+            <p class="eyebrow">Persoonlijke modus</p>
+            <h2>Jouw feed</h2>
+        </div>
+        <button class="icon-button" type="button" aria-label="Zijbalk sluiten" data-feed-close>Sluiten</button>
     </div>
-    
-    <div class="flex-1 p-6 space-y-8 overflow-y-auto">
-      <!-- FILTERS -->
-      <div>
-        <div class="text-xs text-emerald-400 mb-3 tracking-widest">JOUW FILTERS</div>
-        <div class="flex flex-wrap gap-2">
-          <span class="px-5 py-2 bg-slate-800 rounded-2xl text-xs cursor-pointer hover:bg-emerald-900">Kamer</span>
-          <span class="px-5 py-2 bg-slate-800 rounded-2xl text-xs cursor-pointer hover:bg-emerald-900">EU</span>
-          <span class="px-5 py-2 bg-slate-800 rounded-2xl text-xs cursor-pointer hover:bg-emerald-900">Defensie</span>
-          <span class="px-5 py-2 bg-slate-800 rounded-2xl text-xs cursor-pointer hover:bg-emerald-900">Financiën</span>
+
+    <section class="sidebar-section">
+        <h3>Filters</h3>
+        <div class="filter-pills">
+            <button type="button" class="pill active">Klimaat</button>
+            <button type="button" class="pill">Zorg</button>
+            <button type="button" class="pill">Digitale overheid</button>
+            <button type="button" class="pill">Europa</button>
         </div>
-      </div>
+    </section>
 
-      <!-- IMPACT STATS -->
-      <div>
-        <div class="text-xs text-emerald-400 mb-3 tracking-widest">JOUW IMPACT VANDAAG</div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-slate-800/50 p-6 rounded-3xl text-center">
-            <div class="text-5xl font-bold text-emerald-400">14</div>
-            <div class="text-xs text-slate-400 mt-1">Nieuwe signalen</div>
-          </div>
-          <div class="bg-slate-800/50 p-6 rounded-3xl text-center">
-            <div class="text-5xl font-bold text-purple-400">3</div>
-            <div class="text-xs text-slate-400 mt-1">Dossiers in beweging</div>
-          </div>
-        </div>
-      </div>
+    <section class="sidebar-section">
+        <h3>Snelle briefing</h3>
+        <p>Start direct een compacte briefing op basis van je laatst gevolgde dossiers.</p>
+        <a class="button" href="briefings/">Maak snelle briefing</a>
+    </section>
 
-      <!-- NIEUWE SIGNALEN -->
-      <div>
-        <div class="flex justify-between mb-4">
-          <div class="text-xs text-blue-400">NIEUWE SIGNALEN</div>
-          <span class="px-3 py-1 bg-blue-900 text-xs rounded-full">3</span>
-        </div>
-        <div class="space-y-3 text-sm">
-          <div class="bg-slate-800/70 p-5 rounded-2xl">• Box 3-hervorming: directe impact op jouw cliëntportefeuille</div>
-          <div class="bg-slate-800/70 p-5 rounded-2xl">• Defensie naar 3,5% BBP – wat betekent dit voor jouw netwerk?</div>
-          <div class="bg-slate-800/70 p-5 rounded-2xl">• EU Green Deal update: circulaire economie brief morgen</div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <section class="sidebar-section">
+        <h3>Persoonlijke signalen</h3>
+        <ul class="sidebar-list">
+            <li>3 nieuwe updates over circulaire economie</li>
+            <li>1 Kamerbrief gemarkeerd als hoge prioriteit</li>
+            <li>2 Europese consultaties sluiten deze week</li>
+        </ul>
+    </section>
+</aside>
 
-  <script>
-    // Wait for everything to load so clicks are 100% reliable
-    document.addEventListener('DOMContentLoaded', () => {
-      const profileBtn = document.getElementById('profileBtn');
-      const bottomNav = document.getElementById('bottomNav');
-      let hideTimeout;
+<button type="button" class="floating-feed-button" aria-label="Open mijn feed" data-feed-toggle>
+    <span class="floating-feed-icon">+</span>
+    <span class="floating-feed-label">Mijn feed</span>
+</button>
 
-      // Top-right button
-      profileBtn.addEventListener('click', togglePanel);
-
-      // Bottom nav cursor magic
-      window.addEventListener('mousemove', (e) => {
-        if (e.clientY > window.innerHeight - 120) {
-          bottomNav.classList.add('visible');
-          clearTimeout(hideTimeout);
-        } else {
-          hideTimeout = setTimeout(() => {
-            bottomNav.classList.remove('visible');
-          }, 800);
-        }
-      });
-
-      // Splash
-      setTimeout(() => {
-        document.getElementById('splash').style.opacity = '0';
-      }, 2200);
-    });
-
-    // PANEL TOGGLE – now guaranteed to work
-    function togglePanel() {
-      console.log("🔥 Panel toggle fired – sidebar should slide in now");
-      const wrapper = document.getElementById('main-content');
-      const panel = document.getElementById('panel');
-      
-      wrapper.classList.toggle('shifted');
-      panel.classList.toggle('translate-x-full');
-    }
-  </script>
+<script src="js/app.js"></script>
 </body>
 </html>
