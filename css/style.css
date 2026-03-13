@@ -996,6 +996,7 @@ body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 32px;
+    justify-items: end;
 }
 
 .site-menu-topbar {
@@ -1003,6 +1004,7 @@ body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .site-menu-kicker {
@@ -1028,6 +1030,9 @@ body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    width: 100%;
+    align-items: flex-end;
+    text-align: right;
 }
 
 .site-menu-nav a {
@@ -1054,6 +1059,7 @@ body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
     gap: 24px;
     padding-top: 18px;
     border-top: 1px solid rgba(176, 126, 55, 0.14);
+    width: 100%;
 }
 
 .site-menu-footer p {
@@ -1061,6 +1067,8 @@ body[data-auth="logged-in"] [data-mode-panel="logged-in"] {
     margin: 0;
     color: #cfc6b9;
     line-height: 1.7;
+    text-align: right;
+    margin-left: auto;
 }
 
 body.menu-open {
@@ -1170,6 +1178,7 @@ body.menu-open {
     .site-menu-footer {
         align-items: flex-start;
         flex-direction: column;
+        align-items: flex-end;
     }
 
     .hero-home {
