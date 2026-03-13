@@ -58,16 +58,14 @@
                 </div>
             </div>
 
-            <aside class="hero-panel" aria-label="Kernsignalen van vandaag">
-                <article class="hero-panel-card">
+            <div class="hero-notes" aria-label="Kernsignalen van vandaag">
+                <article class="briefing-note">
                     <p class="eyebrow">Vandaag uitgelicht</p>
-                    <h3>Coalitie, Europa en uitvoerbaarheid in een oogopslag</h3>
+                    <h3>Coalitie, Europa en uitvoerbaarheid lopen deze week opvallend door elkaar heen.</h3>
                     <p>
-                        De homepage bundelt nieuwe signalen, beleidsimpact en snelle
-                        briefingacties in een vaste ritmiek die aansluit op de rest van
-                        het platform.
+                        Niet alleen de headlines veranderen, maar vooral de bestuurlijke
+                        consequenties erachter. Dat maakt duiding belangrijker dan volume.
                     </p>
-                    <div class="hero-panel-glow"></div>
                 </article>
 
                 <dl class="hero-metrics">
@@ -84,7 +82,7 @@
                         <dd>Verborgen feed met filters, snelle briefing en prioriteitssignalen.</dd>
                     </div>
                 </dl>
-            </aside>
+            </div>
         </section>
 
         <section class="status-bar" aria-labelledby="mode-headline">
@@ -99,8 +97,8 @@
             <a class="button secondary" href="onboarding/">Persoonlijke modus instellen</a>
         </section>
 
-        <section class="news-grid" aria-label="Belangrijkste ontwikkelingen">
-            <article class="news-card featured-card">
+        <section class="editorial-ribbon" aria-label="Belangrijkste ontwikkelingen">
+            <article class="editorial-lead">
                 <span class="card-tag">Uitgelichte briefing</span>
                 <h3>Een compacte start van de dag met context, bronnen en bestuurlijke impact</h3>
                 <p>
@@ -110,61 +108,69 @@
                 <a href="briefings/">Bekijk briefings</a>
             </article>
 
-            <article class="news-card">
-                <span class="card-tag">Snelle tool</span>
-                <h3>Werk vanuit dossiers in plaats van losse berichten</h3>
-                <p>
-                    Orden updates per thema en bestuurslaag, zodat vervolgvragen sneller
-                    naar boven komen in je briefingworkflow.
-                </p>
-                <a class="text-link" href="topics/">Open themapagina's</a>
-            </article>
+            <div class="editorial-column">
+                <article class="editorial-brief">
+                    <span class="card-tag">Snelle tool</span>
+                    <h3>Werk vanuit dossiers in plaats van losse berichten</h3>
+                    <p>
+                        Orden updates per thema en bestuurslaag, zodat vervolgvragen sneller
+                        naar boven komen in je briefingworkflow.
+                    </p>
+                    <a class="text-link" href="topics/">Open themapagina's</a>
+                </article>
 
-            <article class="news-card">
-                <span class="card-tag">Overzicht</span>
-                <h3>Van prototype naar duidelijke productstructuur</h3>
-                <p>
-                    De homepage sluit nu weer aan op dezelfde navigatie, visuele taal en
-                    interactiepatronen als de andere onderdelen van het platform.
-                </p>
-                <a class="text-link" href="about/">Lees meer over het platform</a>
-            </article>
+                <article class="editorial-brief">
+                    <span class="card-tag">Overzicht</span>
+                    <h3>Van prototype naar duidelijke productstructuur</h3>
+                    <p>
+                        De homepage sluit nu weer aan op dezelfde navigatie, visuele taal en
+                        interactiepatronen als de andere onderdelen van het platform.
+                    </p>
+                    <a class="text-link" href="about/">Lees meer over het platform</a>
+                </article>
+            </div>
         </section>
 
-        <section class="content-panel" aria-labelledby="updates-heading">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">Nieuwe signalen</p>
-                    <h2 id="updates-heading">Wat nu aandacht vraagt</h2>
+        <section class="coverage-layout" aria-labelledby="updates-heading">
+            <div class="coverage-main content-panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Nieuwe signalen</p>
+                        <h2 id="updates-heading">Wat nu aandacht vraagt</h2>
+                    </div>
+                    <a class="text-link" href="dashboard.html">Open dashboard</a>
                 </div>
-                <a class="text-link" href="dashboard.html">Open dashboard</a>
+
+                <article class="coverage-feature">
+                    <span class="card-tag">Dossierlijn</span>
+                    <h3>Kamer en kabinet zetten de toon, maar uitvoering bepaalt de echte gevoeligheid.</h3>
+                    <p>
+                        Nieuwe agenda-updates en debatmomenten zorgen voor directe briefingverzoeken.
+                        Tegelijk verschuift de relevantie van nieuws naar bestuurlijke haalbaarheid,
+                        waardoor dossiers sneller om extra context vragen.
+                    </p>
+                </article>
             </div>
 
-            <div class="update-list">
-                <article class="update-item highlight">
-                    <h3>Kamer en kabinet</h3>
-                    <p>
-                        Nieuwe agenda-updates en debatmomenten zorgen voor direct relevante
-                        briefingverzoeken in meerdere dossiers.
-                    </p>
-                </article>
-
-                <article class="update-item">
+            <aside class="coverage-rail" aria-label="Volglijnen">
+                <article class="rail-item rail-item-accent">
+                    <span class="card-tag">Volglijn 01</span>
                     <h3>Europese dossiers</h3>
                     <p>
-                        Consultaties en beleidsvoorstellen vragen om snelle vertaling naar
-                        nationale uitvoerbaarheid en politieke gevoeligheid.
+                        Consultaties en voorstellen vragen om snelle vertaling naar nationale
+                        uitvoerbaarheid en politieke gevoeligheid.
                     </p>
                 </article>
 
-                <article class="update-item">
+                <article class="rail-item">
+                    <span class="card-tag">Volglijn 02</span>
                     <h3>Uitvoering en impact</h3>
                     <p>
                         Signalering rond uitvoeringsdruk helpt om briefings niet alleen op
                         nieuwswaarde, maar ook op praktische gevolgen te rangschikken.
                     </p>
                 </article>
-            </div>
+            </aside>
         </section>
 
     </main>
