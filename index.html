@@ -11,11 +11,9 @@
     body { font-family: 'Inter', sans-serif; }
     h1, h2 { font-family: 'Playfair Display', serif; }
     
-    /* Subtle network pattern in hero */
     .hero-bg {
-      background: 
-        linear-gradient(rgba(42,157,143,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(42,157,143,0.03) 1px, transparent 1px);
+      background: linear-gradient(rgba(42,157,143,0.03) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(42,157,143,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
     }
     
@@ -48,7 +46,7 @@
 </head>
 <body class="bg-slate-950 text-white">
 
-  <!-- HEADER (same + tiny glow) -->
+  <!-- HEADER -->
   <header class="bg-[#0A2540] border-b border-slate-700 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -72,22 +70,20 @@
           <i class="fa-solid fa-chart-line"></i>
           <span>Mijn Dashboard</span>
         </button>
-        <div class="w-9 h-9 bg-emerald-600 rounded-2xl flex items-center justify-center text-xs font-bold cursor-pointer shadow-md" onclick="fakeLogout()">LJ</div>
+        <div onclick="fakeLogout()" class="w-9 h-9 bg-emerald-600 rounded-2xl flex items-center justify-center text-xs font-bold cursor-pointer shadow-md">LJ</div>
       </div>
     </div>
   </header>
 
-  <!-- HERO with pattern -->
+  <!-- HERO -->
   <section class="hero-bg bg-[#0A2540] py-24 relative overflow-hidden">
     <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
       <h2 class="text-6xl font-bold tracking-tighter mb-4">Volg beleid zonder ruis</h2>
       <p class="text-xl text-slate-300 max-w-lg mx-auto">De scherpste actuele briefings voor politici en beleidsmakers.</p>
     </div>
-    <!-- faint gold accent line -->
-    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-px bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
   </section>
 
-  <!-- NEWS GRID (upgraded hover) -->
+  <!-- NEWS GRID -->
   <section class="max-w-7xl mx-auto px-6 py-16">
     <div class="flex justify-between items-end mb-10">
       <h3 class="text-3xl font-semibold">Actuele Beleidsnieuws</h3>
@@ -111,8 +107,6 @@
         </div>
       </div>
 
-      <!-- Card 2 & 3 same structure, just copy-paste the hover class works on all -->
-      <!-- (I kept them identical to before for brevity — they now all lift & glow) -->
       <!-- Card 2 -->
       <div class="news-card bg-slate-900 rounded-3xl overflow-hidden border border-slate-700">
         <div class="p-6">
@@ -147,14 +141,78 @@
     </div>
   </section>
 
-  <!-- FOOTER & SIDEBAR unchanged (still perfect) – same as before -->
+  <!-- FOOTER -->
+  <footer class="bg-[#0A2540] py-12 border-t border-slate-700">
+    <div class="max-w-7xl mx-auto px-6 text-center text-xs text-slate-400">
+      © 2026 Beleidsbriefing Platform • Voor politici &amp; beleidsmakers
+    </div>
+  </footer>
 
-  <!-- (paste the exact sidebar + footer + script from my previous message here – no changes needed) -->
+  <!-- DASHBOARD SIDEBAR (now 100% working) -->
+  <div id="sidebar" class="fixed top-0 right-0 h-full w-96 bg-slate-900 border-l border-slate-700 shadow-2xl transform translate-x-full transition-transform duration-300 z-[100] flex flex-col">
+    <div class="p-6 border-b border-slate-700 flex justify-between items-center">
+      <div>
+        <p class="font-medium">Welkom terug, Liv</p>
+        <p class="text-xs text-slate-400">Persoonlijke briefing feed</p>
+      </div>
+      <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+    </div>
+
+    <div class="p-6 flex-1 overflow-y-auto space-y-8">
+      <div>
+        <p class="uppercase text-xs tracking-widest text-slate-400 mb-3">Snelle filters</p>
+        <div class="flex flex-wrap gap-2">
+          <span onclick="this.classList.toggle('bg-emerald-600')" class="px-4 py-1 bg-slate-800 hover:bg-emerald-600 rounded-2xl text-sm cursor-pointer transition">Klimaat</span>
+          <span onclick="this.classList.toggle('bg-emerald-600')" class="px-4 py-1 bg-slate-800 hover:bg-emerald-600 rounded-2xl text-sm cursor-pointer transition">Zorg</span>
+          <span onclick="this.classList.toggle('bg-emerald-600')" class="px-4 py-1 bg-slate-800 hover:bg-emerald-600 rounded-2xl text-sm cursor-pointer transition">Europa</span>
+          <span onclick="this.classList.toggle('bg-emerald-600')" class="px-4 py-1 bg-slate-800 hover:bg-emerald-600 rounded-2xl text-sm cursor-pointer transition">Economisch</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="uppercase text-xs tracking-widest text-slate-400 mb-3">Nieuwe signalen (3)</p>
+        <div class="space-y-4">
+          <div class="bg-slate-800 p-4 rounded-2xl text-sm">• Kamerbrief circulaire economie – deadline 20 maart</div>
+          <div class="bg-slate-800 p-4 rounded-2xl text-sm">• Nieuwe EU Green Deal update – hoge prioriteit</div>
+          <div class="bg-slate-800 p-4 rounded-2xl text-sm">• Pensioenleeftijd wetsvoorstel aangenomen</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-950 p-6 rounded-3xl">
+        <p class="text-xs uppercase mb-4">Jouw overzicht</p>
+        <div class="grid grid-cols-2 gap-6 text-center">
+          <div>
+            <div class="text-3xl font-bold text-emerald-400">47</div>
+            <div class="text-xs text-slate-400">Opgeslagen dossiers</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-emerald-400">12</div>
+            <div class="text-xs text-slate-400">Nieuwe briefings</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 border-t border-slate-700 text-xs text-slate-400 flex justify-between">
+      <button onclick="fakeLogout()" class="hover:text-white">Uitloggen</button>
+      <button class="text-emerald-400">Volledig dashboard openen →</button>
+    </div>
+  </div>
 
   <script>
-    // same toggleSidebar and fakeLogout as before
-    function toggleSidebar() { /* same */ }
-    function fakeLogout() { /* same */ }
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('translate-x-full');
+    }
+
+    function fakeLogout() {
+      alert("Je bent nu uitgelogd (demo). Log weer in om de sidebar te zien.");
+    }
+
+    tailwind.config = {
+      content: [],
+      theme: { extend: { colors: { navy: '#0A2540', emerald: '#2A9D8F' } } }
+    };
   </script>
 </body>
 </html>
