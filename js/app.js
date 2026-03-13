@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var feedToggle = document.querySelector("[data-feed-toggle]");
     var feedClose = document.querySelector("[data-feed-close]");
     var homepageSplash = document.querySelector("[data-homepage-splash]");
+    var menuOverlay = document.querySelector("[data-site-menu]");
+    var menuToggle = document.querySelector("[data-menu-toggle]");
+    var menuClose = document.querySelector("[data-menu-close]");
 
     var modeCopy = {
         "logged-out": {
@@ -53,5 +56,37 @@ document.addEventListener("DOMContentLoaded", function () {
         window.setTimeout(function () {
             homepageSplash.classList.add("is-hidden");
         }, 1600);
+    }
+
+    function setMenuState(isOpen) {
+        if (!menuOverlay || !menuToggle) {
+            return;
+        }
+
+        menuOverlay.classList.toggle("is-open", isOpen);
+        menuOverlay.setAttribute("aria-hidden", isOpen ? "false" : "true");
+        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        body.classList.toggle("menu-open", isOpen);
+    }
+
+    if (menuToggle && menuOverlay) {
+        menuToggle.addEventListener("click", function () {
+            var isOpen = menuOverlay.getAttribute("aria-hidden") === "false";
+            setMenuState(!isOpen);
+        });
+    }
+
+    if (menuClose) {
+        menuClose.addEventListener("click", function () {
+            setMenuState(false);
+        });
+    }
+
+    if (menuOverlay) {
+        menuOverlay.addEventListener("click", function (event) {
+            if (event.target === menuOverlay) {
+                setMenuState(false);
+            }
+        });
     }
 });

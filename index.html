@@ -18,7 +18,26 @@
 <header class="site-header">
     <div class="site-header-inner">
         <a class="site-logo-slot" href="index.html" aria-label="Home"></a>
-        <nav class="main-nav">
+        <div class="header-actions">
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
+                <span class="menu-toggle-label">Menu</span>
+                <span class="menu-toggle-icon" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="site-menu-overlay" id="site-menu" aria-hidden="true" data-site-menu>
+    <div class="site-menu-shell">
+        <div class="site-menu-topbar">
+            <p class="site-menu-kicker">Navigatie</p>
+            <button class="site-menu-close" type="button" aria-label="Sluit menu" data-menu-close>Sluiten</button>
+        </div>
+
+        <nav class="site-menu-nav" aria-label="Hoofdmenu">
             <a href="index.html" aria-current="page">Home</a>
             <a href="dashboard.html">Dashboard</a>
             <a href="briefings/">Briefings</a>
@@ -26,11 +45,13 @@
             <a href="about/">Over ons</a>
             <a href="onboarding/">Profiel</a>
         </nav>
-        <div class="header-actions">
-            <a class="button login-link" href="onboarding/">Inloggen</a>
+
+        <div class="site-menu-footer">
+            <p>Beleidsbriefing voor professionals die sneller verbanden willen zien.</p>
+            <a class="button" href="onboarding/">Inloggen</a>
         </div>
     </div>
-</header>
+</div>
 
 <div class="homepage-shell">
     <main class="homepage-main">
