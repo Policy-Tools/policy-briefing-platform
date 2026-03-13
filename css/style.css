@@ -308,7 +308,7 @@ button.button {
     z-index: 1;
 }
 
-.ambient-layer {
+.video-background {
     position: fixed;
     inset: 0;
     z-index: 0;
@@ -316,149 +316,24 @@ button.button {
     overflow: hidden;
 }
 
-.ambient-orb,
-.ambient-smoke,
-.ambient-line,
-.ambient-beam {
+.video-background::after {
+    content: "";
     position: absolute;
-    opacity: 0.8;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(7, 11, 18, 0.7) 0%, rgba(10, 16, 26, 0.72) 26%, rgba(13, 20, 31, 0.78) 60%, rgba(8, 14, 23, 0.84) 100%),
+        radial-gradient(circle at 18% 26%, rgba(113, 36, 36, 0.26), transparent 28%),
+        radial-gradient(circle at 78% 24%, rgba(176, 126, 55, 0.18), transparent 24%),
+        radial-gradient(circle at 52% 78%, rgba(59, 89, 138, 0.18), transparent 24%);
 }
 
-.ambient-smoke {
-    filter: blur(42px);
-    mix-blend-mode: screen;
-    animation: smokeDrift 24s ease-in-out infinite;
-}
-
-.ambient-smoke-a {
-    width: 42vw;
-    height: 42vw;
-    min-width: 420px;
-    min-height: 420px;
-    top: -8%;
-    left: -10%;
-    background: radial-gradient(circle, rgba(124, 52, 164, 0.36) 0%, rgba(152, 56, 56, 0.28) 32%, transparent 70%);
-}
-
-.ambient-smoke-b {
-    width: 38vw;
-    height: 38vw;
-    min-width: 360px;
-    min-height: 360px;
-    top: 18%;
-    right: -10%;
-    background: radial-gradient(circle, rgba(56, 118, 186, 0.34) 0%, rgba(214, 160, 78, 0.26) 34%, transparent 72%);
-    animation-duration: 30s;
-    animation-delay: -6s;
-}
-
-.ambient-smoke-c {
-    width: 34vw;
-    height: 34vw;
-    min-width: 320px;
-    min-height: 320px;
-    bottom: 2%;
-    left: 24%;
-    background: radial-gradient(circle, rgba(162, 46, 46, 0.28) 0%, rgba(86, 128, 194, 0.24) 36%, transparent 74%);
-    animation-duration: 26s;
-    animation-delay: -12s;
-}
-
-.ambient-orb {
-    border-radius: 50%;
-    filter: blur(24px);
-    animation: ambientFloat 18s ease-in-out infinite;
-}
-
-.ambient-orb-a {
-    width: 320px;
-    height: 320px;
-    top: 10%;
-    left: -4%;
-    background: radial-gradient(circle, rgba(162, 46, 46, 0.52) 0%, transparent 72%);
-}
-
-.ambient-orb-b {
-    width: 420px;
-    height: 420px;
-    top: 42%;
-    right: -8%;
-    background: radial-gradient(circle, rgba(224, 162, 76, 0.42) 0%, transparent 74%);
-    animation-duration: 22s;
-}
-
-.ambient-orb-c {
-    width: 260px;
-    height: 260px;
-    bottom: 12%;
-    left: 42%;
-    background: radial-gradient(circle, rgba(86, 128, 194, 0.42) 0%, transparent 75%);
-    animation-duration: 20s;
-}
-
-.ambient-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(224, 162, 76, 0.7) 45%, transparent 100%);
-    animation: ambientDrift 12s linear infinite;
-}
-
-.ambient-line-a {
-    width: 54vw;
-    top: 16%;
-    left: 2%;
-}
-
-.ambient-line-b {
-    width: 44vw;
-    bottom: 14%;
-    right: 2%;
-    animation-duration: 16s;
-    animation-direction: reverse;
-}
-
-.ambient-line-c {
-    width: 48vw;
-    top: 34%;
-    left: -4%;
-    animation-duration: 14s;
-}
-
-.ambient-line-d {
-    width: 40vw;
-    top: 58%;
-    right: 4%;
-    animation-duration: 18s;
-}
-
-.ambient-line-e {
-    width: 34vw;
-    bottom: 28%;
-    left: 18%;
-    animation-duration: 11s;
-    animation-direction: reverse;
-}
-
-.ambient-beam {
-    width: 28vw;
-    min-width: 260px;
-    height: 180vh;
-    top: -40vh;
-    background: linear-gradient(180deg, transparent 0%, rgba(224, 162, 76, 0.14) 28%, rgba(95, 133, 187, 0.18) 52%, transparent 100%);
-    filter: blur(10px);
-    --beam-rotation: 10deg;
-    transform: rotate(var(--beam-rotation));
-    animation: beamSweep 18s ease-in-out infinite;
-}
-
-.ambient-beam-a {
-    left: 8%;
-}
-
-.ambient-beam-b {
-    right: 4%;
-    animation-duration: 24s;
-    animation-delay: -7s;
-    --beam-rotation: -11deg;
+.video-background-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    filter: saturate(0.8) brightness(0.42) contrast(1.05);
+    transform: scale(1.04);
 }
 
 .homepage-splash {
