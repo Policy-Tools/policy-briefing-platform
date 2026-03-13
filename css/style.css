@@ -283,9 +283,9 @@ button.button {
 
 .homepage {
     background:
-        radial-gradient(circle at top left, rgba(122, 46, 46, 0.12), transparent 24%),
-        radial-gradient(circle at 82% 16%, rgba(176, 126, 55, 0.12), transparent 20%),
-        linear-gradient(180deg, #0a1220 0%, #101827 42%, #161f2d 100%);
+        radial-gradient(circle at top left, rgba(122, 46, 46, 0.16), transparent 26%),
+        radial-gradient(circle at 82% 16%, rgba(176, 126, 55, 0.16), transparent 22%),
+        linear-gradient(180deg, #0b1422 0%, #101a2b 42%, #162131 100%);
     color: #e8e1d6;
     min-height: 100vh;
     overflow-x: hidden;
@@ -317,60 +317,101 @@ button.button {
 }
 
 .ambient-orb,
+.ambient-smoke,
 .ambient-line {
     position: absolute;
     opacity: 0.55;
 }
 
+.ambient-smoke {
+    filter: blur(56px);
+    mix-blend-mode: screen;
+    animation: smokeDrift 24s ease-in-out infinite;
+}
+
+.ambient-smoke-a {
+    width: 42vw;
+    height: 42vw;
+    min-width: 420px;
+    min-height: 420px;
+    top: -8%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(92, 42, 113, 0.18) 0%, rgba(122, 46, 46, 0.14) 32%, transparent 70%);
+}
+
+.ambient-smoke-b {
+    width: 38vw;
+    height: 38vw;
+    min-width: 360px;
+    min-height: 360px;
+    top: 18%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(43, 88, 137, 0.18) 0%, rgba(176, 126, 55, 0.14) 34%, transparent 72%);
+    animation-duration: 30s;
+    animation-delay: -6s;
+}
+
+.ambient-smoke-c {
+    width: 34vw;
+    height: 34vw;
+    min-width: 320px;
+    min-height: 320px;
+    bottom: 2%;
+    left: 24%;
+    background: radial-gradient(circle, rgba(107, 31, 31, 0.16) 0%, rgba(61, 91, 135, 0.14) 36%, transparent 74%);
+    animation-duration: 26s;
+    animation-delay: -12s;
+}
+
 .ambient-orb {
     border-radius: 50%;
-    filter: blur(18px);
-    animation: ambientFloat 22s ease-in-out infinite;
+    filter: blur(24px);
+    animation: ambientFloat 18s ease-in-out infinite;
 }
 
 .ambient-orb-a {
-    width: 280px;
-    height: 280px;
-    top: 12%;
-    left: -6%;
-    background: radial-gradient(circle, rgba(107, 31, 31, 0.26) 0%, transparent 72%);
+    width: 320px;
+    height: 320px;
+    top: 10%;
+    left: -4%;
+    background: radial-gradient(circle, rgba(107, 31, 31, 0.34) 0%, transparent 72%);
 }
 
 .ambient-orb-b {
-    width: 360px;
-    height: 360px;
-    top: 48%;
-    right: -10%;
-    background: radial-gradient(circle, rgba(176, 126, 55, 0.18) 0%, transparent 74%);
-    animation-duration: 28s;
+    width: 420px;
+    height: 420px;
+    top: 42%;
+    right: -8%;
+    background: radial-gradient(circle, rgba(176, 126, 55, 0.24) 0%, transparent 74%);
+    animation-duration: 22s;
 }
 
 .ambient-orb-c {
-    width: 220px;
-    height: 220px;
-    bottom: 10%;
-    left: 38%;
-    background: radial-gradient(circle, rgba(61, 91, 135, 0.16) 0%, transparent 75%);
-    animation-duration: 24s;
+    width: 260px;
+    height: 260px;
+    bottom: 12%;
+    left: 42%;
+    background: radial-gradient(circle, rgba(61, 91, 135, 0.24) 0%, transparent 75%);
+    animation-duration: 20s;
 }
 
 .ambient-line {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(176, 126, 55, 0.24) 45%, transparent 100%);
-    animation: ambientDrift 18s linear infinite;
+    background: linear-gradient(90deg, transparent 0%, rgba(176, 126, 55, 0.34) 45%, transparent 100%);
+    animation: ambientDrift 12s linear infinite;
 }
 
 .ambient-line-a {
-    width: 42vw;
-    top: 18%;
-    left: 8%;
+    width: 54vw;
+    top: 16%;
+    left: 2%;
 }
 
 .ambient-line-b {
-    width: 36vw;
-    bottom: 18%;
-    right: 6%;
-    animation-duration: 24s;
+    width: 44vw;
+    bottom: 14%;
+    right: 2%;
+    animation-duration: 16s;
     animation-direction: reverse;
 }
 
@@ -1420,23 +1461,46 @@ body.menu-open {
     }
 
     50% {
-        transform: translate3d(18px, -22px, 0) scale(1.04);
+        transform: translate3d(34px, -30px, 0) scale(1.09);
     }
 }
 
 @keyframes ambientDrift {
     0% {
-        transform: translate3d(-4%, 0, 0);
-        opacity: 0.18;
+        transform: translate3d(-10%, 0, 0);
+        opacity: 0.24;
     }
 
     50% {
-        opacity: 0.5;
+        opacity: 0.72;
     }
 
     100% {
-        transform: translate3d(8%, 0, 0);
-        opacity: 0.18;
+        transform: translate3d(14%, 0, 0);
+        opacity: 0.24;
+    }
+}
+
+@keyframes smokeDrift {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.42;
+    }
+
+    25% {
+        transform: translate3d(4%, -3%, 0) scale(1.08);
+        opacity: 0.62;
+    }
+
+    50% {
+        transform: translate3d(-3%, 4%, 0) scale(1.14);
+        opacity: 0.48;
+    }
+
+    75% {
+        transform: translate3d(5%, 2%, 0) scale(1.06);
+        opacity: 0.58;
     }
 }
 
@@ -1631,6 +1695,7 @@ body.menu-open {
     .hot-topic,
     .timeline-day,
     .timeline-sources li,
+    .ambient-smoke,
     .ambient-orb,
     .ambient-line,
     .week-timeline-window::after {
