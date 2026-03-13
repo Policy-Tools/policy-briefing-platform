@@ -790,6 +790,8 @@ button.button {
 
 .hot-topics {
     margin-bottom: 34px;
+    position: relative;
+    isolation: isolate;
 }
 
 .hot-topics-heading {
@@ -808,6 +810,8 @@ button.button {
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
     gap: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .hot-topic {
@@ -818,18 +822,45 @@ button.button {
     padding: 28px;
     border: 1px solid rgba(176, 126, 55, 0.12);
     background:
-        linear-gradient(180deg, rgba(15, 21, 31, 0.3) 0%, rgba(16, 22, 32, 0.98) 72%),
-        radial-gradient(circle at top right, rgba(176, 126, 55, 0.1), transparent 28%);
-    box-shadow: 0 16px 30px rgba(2, 6, 15, 0.22);
+        linear-gradient(180deg, rgba(15, 21, 31, 0.18) 0%, rgba(16, 22, 32, 0.9) 72%),
+        radial-gradient(circle at top right, rgba(176, 126, 55, 0.14), transparent 28%);
+    box-shadow: 0 16px 30px rgba(2, 6, 15, 0.22), inset 0 0 80px rgba(95, 133, 187, 0.06);
     transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .hot-topic-primary {
     min-height: 360px;
     background:
-        linear-gradient(180deg, rgba(16, 22, 32, 0.16) 0%, rgba(16, 22, 32, 0.98) 72%),
-        radial-gradient(circle at 82% 20%, rgba(107, 31, 31, 0.24), transparent 24%),
-        linear-gradient(135deg, rgba(25, 19, 18, 0.9) 0%, rgba(18, 27, 40, 0.98) 100%);
+        linear-gradient(180deg, rgba(16, 22, 32, 0.08) 0%, rgba(16, 22, 32, 0.86) 72%),
+        radial-gradient(circle at 82% 20%, rgba(107, 31, 31, 0.3), transparent 24%),
+        linear-gradient(135deg, rgba(25, 19, 18, 0.82) 0%, rgba(18, 27, 40, 0.92) 100%);
+}
+
+.hot-topic::before,
+.hot-topic::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.hot-topic::before {
+    inset: auto -10% -18% auto;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(176, 126, 55, 0.14) 0%, transparent 72%);
+    filter: blur(18px);
+    animation: cardSmoke 12s ease-in-out infinite;
+}
+
+.hot-topic::after {
+    inset: -12% auto auto -10%;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(61, 91, 135, 0.12) 0%, transparent 76%);
+    filter: blur(16px);
+    animation: cardSmoke 15s ease-in-out infinite reverse;
 }
 
 .hot-topic-meta {
@@ -885,6 +916,7 @@ button.button {
 .week-timeline-section {
     position: relative;
     margin-bottom: 40px;
+    isolation: isolate;
 }
 
 .week-timeline-sticky {
@@ -925,6 +957,7 @@ button.button {
     border-block: 1px solid rgba(176, 126, 55, 0.14);
     padding: 28px 0;
     position: relative;
+    z-index: 1;
 }
 
 .week-timeline-window::before {
@@ -962,7 +995,7 @@ button.button {
     width: min(32rem, calc(100vw - 88px));
     min-height: 420px;
     padding: 26px 24px 28px;
-    background: linear-gradient(180deg, rgba(15, 20, 29, 0.9) 0%, rgba(13, 18, 27, 0.98) 100%);
+    background: linear-gradient(180deg, rgba(15, 20, 29, 0.76) 0%, rgba(13, 18, 27, 0.9) 100%);
     border: 1px solid rgba(176, 126, 55, 0.12);
     display: flex;
     flex-direction: column;
@@ -970,6 +1003,8 @@ button.button {
     position: relative;
     transition: transform 0.35s ease, border-color 0.35s ease;
     z-index: 1;
+    overflow: hidden;
+    box-shadow: inset 0 0 90px rgba(95, 133, 187, 0.05);
 }
 
 .timeline-day::before {
@@ -986,6 +1021,19 @@ button.button {
 
 .timeline-day-current {
     background: linear-gradient(180deg, rgba(34, 23, 22, 0.92) 0%, rgba(14, 19, 29, 0.98) 100%);
+}
+
+.timeline-day::after {
+    content: "";
+    position: absolute;
+    right: -8%;
+    bottom: -14%;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(176, 126, 55, 0.12) 0%, transparent 72%);
+    filter: blur(18px);
+    animation: cardSmoke 13s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .timeline-day:hover {
@@ -1043,6 +1091,97 @@ button.button {
     transform: translateY(-2px);
     background: rgba(255, 248, 240, 0.06);
     border-color: rgba(210, 166, 101, 0.9);
+}
+
+.section-atmosphere {
+    position: absolute;
+    inset: -10% -6%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.section-smoke,
+.section-beam {
+    position: absolute;
+    pointer-events: none;
+}
+
+.section-smoke {
+    width: 30vw;
+    min-width: 260px;
+    height: 30vw;
+    min-height: 260px;
+    filter: blur(42px);
+    mix-blend-mode: screen;
+    animation: sectionSmoke 16s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.section-smoke-a {
+    top: 2%;
+    left: 8%;
+    background: radial-gradient(circle, rgba(107, 31, 31, 0.18) 0%, rgba(176, 126, 55, 0.14) 36%, transparent 72%);
+}
+
+.section-smoke-b {
+    top: 18%;
+    right: 4%;
+    background: radial-gradient(circle, rgba(61, 91, 135, 0.18) 0%, rgba(176, 126, 55, 0.12) 34%, transparent 72%);
+    animation-duration: 19s;
+    animation-delay: -5s;
+}
+
+.section-smoke-c {
+    top: 8%;
+    left: 2%;
+    width: 34vw;
+    height: 34vw;
+    background: radial-gradient(circle, rgba(61, 91, 135, 0.16) 0%, rgba(176, 126, 55, 0.12) 34%, transparent 74%);
+}
+
+.section-smoke-d {
+    bottom: 8%;
+    right: 6%;
+    width: 28vw;
+    height: 28vw;
+    background: radial-gradient(circle, rgba(107, 31, 31, 0.2) 0%, rgba(122, 46, 46, 0.14) 38%, transparent 74%);
+    animation-duration: 18s;
+    animation-delay: -8s;
+}
+
+.section-beam {
+    width: 20vw;
+    min-width: 180px;
+    height: 140%;
+    top: -12%;
+    filter: blur(14px);
+    opacity: 0.38;
+    animation: beamSweep 14s ease-in-out infinite;
+}
+
+.section-beam-a {
+    left: 18%;
+    background: linear-gradient(180deg, transparent 0%, rgba(176, 126, 55, 0.12) 32%, rgba(95, 133, 187, 0.08) 60%, transparent 100%);
+}
+
+.section-beam-b {
+    right: 12%;
+    background: linear-gradient(180deg, transparent 0%, rgba(61, 91, 135, 0.12) 30%, rgba(176, 126, 55, 0.1) 58%, transparent 100%);
+    --beam-rotation: -7deg;
+    animation-duration: 17s;
+}
+
+.section-beam-c {
+    left: 6%;
+    background: linear-gradient(180deg, transparent 0%, rgba(176, 126, 55, 0.1) 34%, rgba(107, 31, 31, 0.08) 60%, transparent 100%);
+}
+
+.section-beam-d {
+    right: 18%;
+    background: linear-gradient(180deg, transparent 0%, rgba(95, 133, 187, 0.12) 30%, rgba(176, 126, 55, 0.09) 56%, transparent 100%);
+    --beam-rotation: -10deg;
+    animation-duration: 20s;
 }
 
 .card-tag {
@@ -1552,6 +1691,32 @@ body.menu-open {
     }
 }
 
+@keyframes sectionSmoke {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.38;
+    }
+
+    50% {
+        transform: translate3d(4%, -3%, 0) scale(1.16);
+        opacity: 0.72;
+    }
+}
+
+@keyframes cardSmoke {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.42;
+    }
+
+    50% {
+        transform: translate3d(-8%, 6%, 0) scale(1.12);
+        opacity: 0.68;
+    }
+}
+
 @keyframes timelinePulse {
     0% {
         transform: translate3d(0, -50%, 0);
@@ -1623,6 +1788,10 @@ body.menu-open {
     .week-timeline-intro {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .section-atmosphere {
+        inset: -4% -2%;
     }
 
     .floating-feed-panel {
@@ -1709,6 +1878,11 @@ body.menu-open {
         min-height: 360px;
     }
 
+    .section-smoke,
+    .section-beam {
+        opacity: 0.5;
+    }
+
     .hero-home {
         padding: 36px 24px;
     }
@@ -1756,6 +1930,8 @@ body.menu-open {
     .hot-topic,
     .timeline-day,
     .timeline-sources li,
+    .section-smoke,
+    .section-beam,
     .ambient-smoke,
     .ambient-orb,
     .ambient-line,
