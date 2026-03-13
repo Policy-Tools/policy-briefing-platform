@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var menuOverlay = document.querySelector("[data-site-menu]");
     var menuToggle = document.querySelector("[data-menu-toggle]");
     var menuClose = document.querySelector("[data-menu-close]");
+    var horizontalSections = document.querySelectorAll("[data-horizontal-section]");
 
     var modeCopy = {
         "logged-out": {
@@ -88,5 +89,36 @@ document.addEventListener("DOMContentLoaded", function () {
                 setMenuState(false);
             }
         });
+    }
+
+    function syncHorizontalSections() {
+        if (!horizontalSections.length) {
+            return;
+        }
+
+        horizontalSections.forEach(function (section) {
+            var track = section.querySelector("[data-horizontal-track]");
+            var sticky = section.querySelector(".week-timeline-sticky");
+
+            if (!track || !sticky) {
+                return;
+            }
+
+            var overflow = Math.max(0, track.scrollWidth - section.clientWidth);
+            var extraScroll = overflow + Math.round(window.innerHeight * 0.45);
+            var totalScrollable = Math.max(1, extraScroll);
+            var rect = section.getBoundingClientRect();
+            var progress = Math.min(Math.max(-rect.top / totalScrollable, 0), 1);
+            var translate = overflow * progress;
+
+            section.style.height = window.innerHeight + extraScroll + "px";
+            track.style.transform = "translate3d(" + -translate + "px, 0, 0)";
+        });
+    }
+
+    if (horizontalSections.length) {
+        syncHorizontalSections();
+        window.addEventListener("scroll", syncHorizontalSections, { passive: true });
+        window.addEventListener("resize", syncHorizontalSections);
     }
 });
