@@ -320,7 +320,9 @@ button.button {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(7, 11, 18, 0.52) 0%, rgba(10, 16, 26, 0.56) 26%, rgba(13, 20, 31, 0.62) 60%, rgba(8, 14, 23, 0.7) 100%);
+    background:
+        linear-gradient(180deg, rgba(6, 10, 16, 0.58) 0%, rgba(8, 13, 21, 0.62) 24%, rgba(10, 16, 25, 0.66) 56%, rgba(8, 12, 20, 0.74) 100%),
+        linear-gradient(90deg, rgba(5, 9, 15, 0.22) 0%, rgba(5, 9, 15, 0.1) 30%, rgba(5, 9, 15, 0.1) 70%, rgba(5, 9, 15, 0.24) 100%);
 }
 
 .video-background-media {
@@ -328,7 +330,7 @@ button.button {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    filter: saturate(0.82) brightness(0.5) contrast(1.04);
+    filter: saturate(0.2) brightness(0.74) contrast(1.02);
     transform: scale(1.04);
 }
 
