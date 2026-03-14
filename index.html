@@ -16,7 +16,8 @@
 </div>
 
 <div class="video-background" aria-hidden="true">
-    <video class="video-background-media" autoplay muted loop playsinline>
+    <video class="video-background-media" autoplay muted loop playsinline preload="auto">
+        <source src="assets/video%27s/87789-602074264.mp4" type="video/mp4">
         <source src="assets/homescreen-background-white-slow.mp4" type="video/mp4">
     </video>
 </div>
@@ -25,10 +26,19 @@
     <a class="site-logo-slot homepage-brand" href="index.html" aria-label="Home"></a>
     <div class="homepage-topbar-actions">
         <a class="topbar-link login-link" href="onboarding/" data-auth-link="logged-out">Inloggen</a>
-        <button class="topbar-link topbar-link-button" type="button" data-auth-link="logged-in" data-dashboard-toggle aria-expanded="false" aria-controls="homepage-dashboard">Dashboard</button>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
-            <span class="menu-toggle-label">Menu</span>
-            <span class="menu-toggle-icon" aria-hidden="true">
+        <button class="topbar-link topbar-link-button topbar-link-icon-button" type="button" data-auth-link="logged-in" data-dashboard-toggle aria-expanded="false" aria-controls="homepage-dashboard" aria-label="Open dashboard">
+            <span class="sr-only">Dashboard</span>
+            <span class="topbar-link-icon topbar-link-icon-dashboard" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+        <button class="menu-toggle menu-toggle-icon-only" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
+            <span class="sr-only">Menu</span>
+            <span class="menu-toggle-icon menu-toggle-icon-columns" aria-hidden="true">
+                <span></span>
                 <span></span>
                 <span></span>
             </span>
@@ -96,8 +106,9 @@
                             <a href="https://www.politico.eu/article/iran-warns-of-retaliatory-strikes-on-us-oil-facilities-kharg-island/" target="_blank" rel="noopener noreferrer">Lees op Politico</a>
                         </div>
                     </div>
-                    <div class="hot-topic-figure" aria-hidden="true">
+                    <div class="hot-topic-figure">
                         <img src="assets/images/2025-10-01-00_00_2025-10-01-23_59_Sentinel-2_Kharg-Island.jpg" alt="">
+                        <span class="hot-topic-image-credit">Bevat gewijzigde Copernicus Sentinel-data 2025, verwerkt door Sentinel Hub.</span>
                     </div>
                 </article>
 
@@ -540,9 +551,10 @@
             <h2>Jouw dashboardlaag</h2>
         </div>
         <div class="homepage-dashboard-head-actions">
-            <button class="menu-toggle homepage-dashboard-menu" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
-                <span class="menu-toggle-label">Menu</span>
-                <span class="menu-toggle-icon" aria-hidden="true">
+            <button class="menu-toggle menu-toggle-icon-only homepage-dashboard-menu" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
+                <span class="sr-only">Menu</span>
+                <span class="menu-toggle-icon menu-toggle-icon-columns" aria-hidden="true">
+                    <span></span>
                     <span></span>
                     <span></span>
                 </span>
