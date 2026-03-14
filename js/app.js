@@ -1,6 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     var body = document.body;
+    var backgroundVideos = document.querySelectorAll("[data-background-video]");
     var authStorageKey = "policy-auth-state";
     var modeHeadline = document.getElementById("mode-headline");
     var modeDescription = document.getElementById("mode-description");
@@ -53,6 +54,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function syncBackgroundVideoPlayback() {
+        if (!backgroundVideos.length) {
+            return;
+        }
+
+        backgroundVideos.forEach(function (video) {
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+
+            if (video.readyState < 2 || !video.paused) {
+                return;
+            }
+
+            var playPromise = video.play();
+
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(function () {
+                    // Ignore autoplay promise rejections and leave the browser in control.
+                });
+            }
+        });
+    }
+
     function syncHomepageState() {
         var authState = body.getAttribute("data-auth") || "logged-out";
 
@@ -70,6 +95,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (storedAuthState === "logged-in" || storedAuthState === "logged-out") {
         applyAuthState(storedAuthState);
+    }
+
+    if (backgroundVideos.length) {
+        backgroundVideos.forEach(function (video) {
+            video.addEventListener("loadeddata", syncBackgroundVideoPlayback, { once: true });
+        });
+
+        syncBackgroundVideoPlayback();
+        window.addEventListener("pageshow", syncBackgroundVideoPlayback);
+        document.addEventListener("visibilitychange", function () {
+            if (!document.hidden) {
+                syncBackgroundVideoPlayback();
+            }
+        });
     }
 
     if (feedToggle && feedPanel) {
@@ -259,12 +298,12 @@ document.addEventListener("DOMContentLoaded", function () {
         startHotTopicRotation();
     }
 
+    var horizontalSyncFrame = null;
+
     function syncHorizontalSections() {
         if (!horizontalSections.length) {
             return;
         }
-
-        var strongestOverlayLift = 0;
 
         horizontalSections.forEach(function (section) {
             var track = section.querySelector("[data-horizontal-track]");
@@ -280,25 +319,33 @@ document.addEventListener("DOMContentLoaded", function () {
             var rect = section.getBoundingClientRect();
             var progress = Math.min(Math.max(-rect.top / totalScrollable, 0), 1);
             var translate = overflow * progress;
-            var sectionVisibility = rect.bottom > 0 && rect.top < window.innerHeight;
+            var nextHeight = window.innerHeight + extraScroll + "px";
+            var nextTransform = "translate3d(" + -translate + "px, 0, 0)";
 
-            section.style.height = window.innerHeight + extraScroll + "px";
-            track.style.transform = "translate3d(" + -translate + "px, 0, 0)";
+            if (section.style.height !== nextHeight) {
+                section.style.height = nextHeight;
+            }
 
-            if (sectionVisibility) {
-                var midCurve = Math.sin(progress * Math.PI);
-                strongestOverlayLift = Math.max(strongestOverlayLift, midCurve);
+            if (track.style.transform !== nextTransform) {
+                track.style.transform = nextTransform;
             }
         });
+    }
 
-        body.style.setProperty("--video-overlay-opacity", String(0.9 - strongestOverlayLift * 0.1));
+    function scheduleHorizontalSectionsSync() {
+        if (horizontalSyncFrame !== null) {
+            return;
+        }
+
+        horizontalSyncFrame = window.requestAnimationFrame(function () {
+            horizontalSyncFrame = null;
+            syncHorizontalSections();
+        });
     }
 
     if (horizontalSections.length) {
         syncHorizontalSections();
-        window.addEventListener("scroll", syncHorizontalSections, { passive: true });
-        window.addEventListener("resize", syncHorizontalSections);
-    } else {
-        body.style.setProperty("--video-overlay-opacity", "0.9");
+        window.addEventListener("scroll", scheduleHorizontalSectionsSync, { passive: true });
+        window.addEventListener("resize", scheduleHorizontalSectionsSync);
     }
 });
