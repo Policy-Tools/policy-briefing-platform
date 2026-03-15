@@ -4,15 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mixpo</title>
+    <script>
+        (function () {
+            try {
+                if (window.sessionStorage.getItem("homepage-splash-seen") === "true") {
+                    document.documentElement.classList.add("homepage-splash-seen");
+                }
+            } catch (error) {
+                // Ignore storage failures and fall back to the runtime splash logic.
+            }
+        }());
+    </script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="homepage" data-auth="logged-out">
 
 <div class="homepage-splash" aria-hidden="true" data-homepage-splash>
-    <div class="homepage-splash-mark">M</div>
+    <div class="homepage-splash-media" aria-hidden="true">
+        <video class="homepage-splash-video" autoplay muted loop playsinline preload="auto" data-splash-video disablePictureInPicture disableRemotePlayback>
+            <source src="assets/videos/homescreen-background-white-slow.mp4?v=capcut-20260313" type="video/mp4">
+        </video>
+    </div>
     <p class="homepage-splash-title">Mixpo</p>
-    <p class="homepage-splash-subtitle">Sneller zien wat beweegt in beleid, bestuur en politiek.</p>
+    <p class="homepage-splash-subtitle">Nieuws en briefingsplatform</p>
 </div>
 
 <div class="video-background" aria-hidden="true">
@@ -112,7 +127,7 @@
                 </article>
 
                 <div class="homepage-slot hot-topic-slot" data-hot-topic-slide>
-                    <article class="hot-topic homepage-card-swap slot-general">
+                    <article class="hot-topic homepage-card-swap slot-general source-brand-nu">
                         <div class="hot-topic-meta">
                             <div class="hot-topic-meta-main">
                                 <span class="card-tag">Klimaat</span>
@@ -149,7 +164,7 @@
                     </article>
                 </div>
 
-                <article class="hot-topic homepage-card-persist" data-hot-topic-slide>
+                <article class="hot-topic homepage-card-persist source-brand-rtl" data-hot-topic-slide>
                     <div class="hot-topic-meta">
                         <div class="hot-topic-meta-main">
                             <span class="card-tag">Defensie</span>
@@ -168,7 +183,7 @@
                 </article>
 
                 <div class="homepage-slot hot-topic-slot" data-hot-topic-slide>
-                    <article class="hot-topic homepage-card-swap slot-general">
+                    <article class="hot-topic homepage-card-swap slot-general source-brand-fd">
                         <div class="hot-topic-meta">
                             <div class="hot-topic-meta-main">
                                 <span class="card-tag">Europa</span>

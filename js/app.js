@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var feedToggle = document.querySelector("[data-feed-toggle]");
     var feedClose = document.querySelector("[data-feed-close]");
     var homepageSplash = document.querySelector("[data-homepage-splash]");
+    var homepageSplashVideo = homepageSplash ? homepageSplash.querySelector("[data-splash-video]") : null;
     var menuOverlay = document.querySelector("[data-site-menu]");
     var menuToggles = document.querySelectorAll("[data-menu-toggle]");
     var menuClose = document.querySelector("[data-menu-close]");
@@ -54,28 +55,56 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function playInlineVideo(video) {
+        if (!video) {
+            return;
+        }
+
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+
+        if (video.readyState < 2 || !video.paused) {
+            return;
+        }
+
+        var playPromise = video.play();
+
+        if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {
+                // Ignore autoplay promise rejections and leave the browser in control.
+            });
+        }
+    }
+
     function syncBackgroundVideoPlayback() {
         if (!backgroundVideos.length) {
             return;
         }
 
         backgroundVideos.forEach(function (video) {
-            video.muted = true;
-            video.defaultMuted = true;
-            video.playsInline = true;
-
-            if (video.readyState < 2 || !video.paused) {
-                return;
-            }
-
-            var playPromise = video.play();
-
-            if (playPromise && typeof playPromise.catch === "function") {
-                playPromise.catch(function () {
-                    // Ignore autoplay promise rejections and leave the browser in control.
-                });
-            }
+            playInlineVideo(video);
         });
+    }
+
+    function setHomepageSplashState(isHidden) {
+        if (!homepageSplash) {
+            return;
+        }
+
+        document.documentElement.classList.toggle("homepage-splash-seen", isHidden);
+        homepageSplash.classList.toggle("is-hidden", isHidden);
+
+        if (!homepageSplashVideo) {
+            return;
+        }
+
+        if (isHidden) {
+            homepageSplashVideo.pause();
+            return;
+        }
+
+        playInlineVideo(homepageSplashVideo);
     }
 
     function syncHomepageState() {
@@ -111,6 +140,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    if (homepageSplashVideo) {
+        homepageSplashVideo.addEventListener("loadeddata", function () {
+            if (!homepageSplash || homepageSplash.classList.contains("is-hidden")) {
+                return;
+            }
+
+            playInlineVideo(homepageSplashVideo);
+        }, { once: true });
+    }
+
     if (feedToggle && feedPanel) {
         feedToggle.addEventListener("click", function () {
             var isHidden = feedPanel.getAttribute("aria-hidden") === "true";
@@ -130,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (homepageSplash) {
         var splashSessionKey = "homepage-splash-seen";
+        var splashDisplayDuration = 6500;
         var hasSeenSplash = false;
 
         try {
@@ -139,17 +179,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (hasSeenSplash) {
-            homepageSplash.classList.add("is-hidden");
+            setHomepageSplashState(true);
         } else {
-            window.setTimeout(function () {
-                homepageSplash.classList.add("is-hidden");
+            try {
+                window.sessionStorage.setItem(splashSessionKey, "true");
+            } catch (error) {
+                // Ignore storage failures and fall back to showing the splash next time.
+            }
 
-                try {
-                    window.sessionStorage.setItem(splashSessionKey, "true");
-                } catch (error) {
-                    // Ignore storage failures and fall back to showing the splash next time.
-                }
-            }, 1600);
+            setHomepageSplashState(false);
+
+            window.setTimeout(function () {
+                setHomepageSplashState(true);
+            }, splashDisplayDuration);
         }
     }
 
