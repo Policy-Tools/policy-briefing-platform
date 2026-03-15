@@ -1,0 +1,23 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#0F1B2B"/>
+  <rect width="1600" height="900" fill="url(#sea)"/>
+  <path d="M428 0C388 146 382 260 410 340C446 442 534 470 560 568C587 670 560 782 512 900H0V0H428Z" fill="#846E5A"/>
+  <path d="M1210 0C1246 126 1254 228 1232 302C1194 426 1090 462 1060 566C1030 674 1056 786 1118 900H1600V0H1210Z" fill="#7A6858"/>
+  <path d="M580 0C554 96 548 184 562 252C584 360 662 418 694 510C728 606 726 742 670 900H930C876 744 872 612 906 520C938 430 1016 364 1038 256C1052 188 1046 98 1020 0H580Z" fill="#13344D" opacity="0.72"/>
+  <path d="M768 164C720 250 674 302 614 356C742 402 860 424 992 414C938 344 886 278 846 164H768Z" fill="#D9B78F"/>
+  <path d="M708 602C808 562 914 542 1026 548" stroke="#F4F7FC" stroke-width="8" stroke-linecap="round" stroke-dasharray="16 18" opacity="0.65"/>
+  <path d="M648 668C772 632 904 622 1054 632" stroke="#B84A3E" stroke-width="14" stroke-linecap="round" stroke-dasharray="20 20"/>
+  <path d="M686 734C810 706 942 706 1084 724" stroke="#F4F7FC" stroke-width="6" stroke-linecap="round" opacity="0.34"/>
+  <circle cx="706" cy="668" r="18" fill="#F4F7FC"/>
+  <circle cx="1054" cy="632" r="18" fill="#B84A3E"/>
+  <circle cx="1172" cy="176" r="120" fill="#B84A3E" opacity="0.16"/>
+  <circle cx="1124" cy="136" r="78" fill="#F4F7FC" opacity="0.08"/>
+  <rect x="656" y="432" width="324" height="84" rx="18" fill="#102030" opacity="0.66"/>
+  <text x="696" y="484" fill="#F4F7FC" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="700">HORMUZ</text>
+  <defs>
+    <linearGradient id="sea" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#254865"/>
+      <stop offset="1" stop-color="#102233"/>
+    </linearGradient>
+  </defs>
+</svg>

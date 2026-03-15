@@ -1,0 +1,40 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#132235"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="1080" y="0" width="520" height="900" fill="url(#glow)" opacity="0.55"/>
+  <path d="M250 665L470 440L690 665H250Z" fill="#26384F"/>
+  <rect x="330" y="520" width="280" height="190" fill="#1F2D3F"/>
+  <rect x="450" y="580" width="70" height="130" fill="#0F1824"/>
+  <rect x="365" y="565" width="50" height="50" fill="#FFB15C" opacity="0.35"/>
+  <rect x="535" y="565" width="50" height="50" fill="#FFB15C" opacity="0.35"/>
+  <path d="M1000 688C938 688 888 638 888 576C888 514 938 464 1000 464H1128C1201 464 1260 523 1260 596V688H1000Z" fill="#1B2B3E"/>
+  <rect x="936" y="520" width="248" height="86" rx="16" fill="#D7E1EE"/>
+  <rect x="970" y="546" width="108" height="20" rx="10" fill="#233B57"/>
+  <circle cx="996" cy="690" r="44" fill="#0E1620"/>
+  <circle cx="1148" cy="690" r="44" fill="#0E1620"/>
+  <circle cx="996" cy="690" r="18" fill="#5E7186"/>
+  <circle cx="1148" cy="690" r="18" fill="#5E7186"/>
+  <rect x="1105" y="538" width="38" height="52" fill="#3A7AC9"/>
+  <rect x="1070" y="545" width="108" height="10" rx="5" fill="#3A7AC9"/>
+  <circle cx="1246" cy="170" r="170" fill="#3A7AC9" opacity="0.22"/>
+  <circle cx="1294" cy="132" r="120" fill="#F15A5A" opacity="0.38"/>
+  <circle cx="1170" cy="220" r="82" fill="#E4EDF8" opacity="0.12"/>
+  <path d="M520 450C520 450 546 412 544 385C542 350 514 320 514 320C514 320 488 350 490 385C492 412 520 450 520 450Z" fill="#FFBC63"/>
+  <path d="M580 430C580 430 608 386 604 350C600 307 566 272 566 272C566 272 534 309 538 350C542 388 580 430 580 430Z" fill="#FF7A3D"/>
+  <path d="M642 454C642 454 674 404 670 366C666 323 626 285 626 285C626 285 592 322 596 364C600 402 642 454 642 454Z" fill="#F14E44"/>
+  <rect x="0" y="758" width="1600" height="142" fill="url(#ground)"/>
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24364C"/>
+      <stop offset="1" stop-color="#0F1A28"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="1600" y1="0" x2="1080" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F15A5A"/>
+      <stop offset="1" stop-color="#3A7AC9" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="800" y1="758" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#152332" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0A121B"/>
+    </linearGradient>
+  </defs>
+</svg>

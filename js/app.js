@@ -22,6 +22,17 @@ document.addEventListener("DOMContentLoaded", function () {
     var hotTopicsRotator = document.querySelector("[data-hot-topics-rotator]");
     var hotTopicSlides = hotTopicsRotator ? hotTopicsRotator.querySelectorAll("[data-hot-topic-slide]") : [];
     var hotTopicDots = hotTopicsRotator ? hotTopicsRotator.querySelectorAll("[data-hot-topic-dot]") : [];
+    var policyLibrary = document.querySelector("[data-policy-library]");
+    var libraryItems = policyLibrary ? Array.prototype.slice.call(policyLibrary.querySelectorAll("[data-library-item]")) : [];
+    var libraryFilterButtons = policyLibrary ? policyLibrary.querySelectorAll("[data-filter-type]") : [];
+    var libraryClear = policyLibrary ? policyLibrary.querySelector("[data-library-clear]") : null;
+    var libraryResults = policyLibrary ? policyLibrary.querySelector("[data-library-results]") : null;
+    var libraryActiveFilters = policyLibrary ? policyLibrary.querySelector("[data-library-active-filters]") : null;
+    var libraryEmpty = policyLibrary ? policyLibrary.querySelector("[data-library-empty]") : null;
+    var libraryPagination = policyLibrary ? policyLibrary.querySelector("[data-library-pagination]") : null;
+    var libraryPages = policyLibrary ? policyLibrary.querySelector("[data-library-pages]") : null;
+    var libraryPrev = policyLibrary ? policyLibrary.querySelector('[data-library-nav="prev"]') : null;
+    var libraryNext = policyLibrary ? policyLibrary.querySelector('[data-library-nav="next"]') : null;
     var authSetters = document.querySelectorAll("[data-auth-set]");
 
     var modeCopy = {
@@ -338,6 +349,248 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setHotTopic(0);
         startHotTopicRotation();
+    }
+
+    if (policyLibrary && libraryItems.length) {
+        var activeLibraryFilters = {
+            ministry: "all",
+            sector: "all",
+            layer: "all"
+        };
+        var currentLibraryPage = 1;
+        var currentLibraryPageSize = getLibraryPageSize();
+
+        function getLibraryPageSize() {
+            if (window.innerWidth <= 720) {
+                return 3;
+            }
+
+            if (window.innerWidth <= 1024) {
+                return 4;
+            }
+
+            return 6;
+        }
+
+        function getFilterButtonLabel(filterType, filterValue) {
+            var matchingButton = policyLibrary.querySelector('[data-filter-type="' + filterType + '"][data-filter-value="' + filterValue + '"]');
+
+            return matchingButton ? matchingButton.textContent : filterValue;
+        }
+
+        function syncLibraryFilterButtons() {
+            libraryFilterButtons.forEach(function (button) {
+                var filterType = button.getAttribute("data-filter-type");
+                var filterValue = button.getAttribute("data-filter-value");
+                var isActive = activeLibraryFilters[filterType] === filterValue;
+
+                button.classList.toggle("is-active", isActive);
+                button.setAttribute("aria-pressed", isActive ? "true" : "false");
+            });
+
+            if (libraryClear) {
+                var hasActiveFilter = activeLibraryFilters.ministry !== "all" || activeLibraryFilters.sector !== "all" || activeLibraryFilters.layer !== "all";
+                libraryClear.disabled = !hasActiveFilter;
+            }
+        }
+
+        function renderActiveLibraryFilters() {
+            if (!libraryActiveFilters) {
+                return;
+            }
+
+            libraryActiveFilters.innerHTML = "";
+
+            if (activeLibraryFilters.ministry === "all" && activeLibraryFilters.sector === "all" && activeLibraryFilters.layer === "all") {
+                var defaultChip = document.createElement("span");
+                defaultChip.className = "policy-active-chip";
+                defaultChip.textContent = "Alle ministeries, sectoren en lagen";
+                libraryActiveFilters.appendChild(defaultChip);
+                return;
+            }
+
+            ["ministry", "sector", "layer"].forEach(function (filterType) {
+                var filterValue = activeLibraryFilters[filterType];
+                var chip;
+
+                if (filterValue === "all") {
+                    return;
+                }
+
+                chip = document.createElement("span");
+                chip.className = "policy-active-chip";
+                chip.textContent = getFilterButtonLabel(filterType, filterValue);
+                libraryActiveFilters.appendChild(chip);
+            });
+        }
+
+        function getFilteredLibraryItems() {
+            return libraryItems.filter(function (item) {
+                return Object.keys(activeLibraryFilters).every(function (filterType) {
+                    var activeValue = activeLibraryFilters[filterType];
+
+                    if (activeValue === "all") {
+                        return true;
+                    }
+
+                    return item.getAttribute("data-" + filterType) === activeValue;
+                });
+            });
+        }
+
+        function renderLibraryPagination(pageCount) {
+            var pageNumber;
+            var button;
+
+            if (!libraryPagination || !libraryPages) {
+                return;
+            }
+
+            libraryPages.innerHTML = "";
+            libraryPagination.hidden = pageCount <= 1;
+
+            if (libraryPrev) {
+                libraryPrev.disabled = currentLibraryPage <= 1;
+            }
+
+            if (libraryNext) {
+                libraryNext.disabled = currentLibraryPage >= pageCount;
+            }
+
+            for (pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+                button = document.createElement("button");
+                button.type = "button";
+                button.className = "policy-page-button";
+                button.textContent = String(pageNumber);
+                button.setAttribute("data-library-page", String(pageNumber));
+                button.setAttribute("aria-label", "Ga naar pagina " + pageNumber);
+
+                if (pageNumber === currentLibraryPage) {
+                    button.classList.add("is-active");
+                    button.setAttribute("aria-current", "page");
+                }
+
+                libraryPages.appendChild(button);
+            }
+        }
+
+        function renderLibrary() {
+            var filteredItems = getFilteredLibraryItems();
+            var pageCount = Math.max(1, Math.ceil(filteredItems.length / currentLibraryPageSize));
+            var startIndex;
+            var endIndex;
+            var visibleItems;
+
+            currentLibraryPage = Math.min(currentLibraryPage, pageCount);
+            startIndex = (currentLibraryPage - 1) * currentLibraryPageSize;
+            endIndex = startIndex + currentLibraryPageSize;
+            visibleItems = filteredItems.slice(startIndex, endIndex);
+
+            libraryItems.forEach(function (item) {
+                var shouldShow = visibleItems.indexOf(item) !== -1;
+
+                item.hidden = !shouldShow;
+                item.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+            });
+
+            if (libraryResults) {
+                if (!filteredItems.length) {
+                    libraryResults.textContent = "Geen artikelen gevonden";
+                } else {
+                    libraryResults.textContent = "Toont " + (startIndex + 1) + "-" + (startIndex + visibleItems.length) + " van " + filteredItems.length + " artikelen";
+                }
+            }
+
+            if (libraryEmpty) {
+                libraryEmpty.hidden = filteredItems.length !== 0;
+            }
+
+            renderLibraryPagination(pageCount);
+            renderActiveLibraryFilters();
+            syncLibraryFilterButtons();
+        }
+
+        libraryFilterButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                var filterType = button.getAttribute("data-filter-type");
+                var filterValue = button.getAttribute("data-filter-value");
+
+                activeLibraryFilters[filterType] = filterValue || "all";
+                currentLibraryPage = 1;
+                renderLibrary();
+            });
+        });
+
+        if (libraryClear) {
+            libraryClear.addEventListener("click", function () {
+                activeLibraryFilters = {
+                    ministry: "all",
+                    sector: "all",
+                    layer: "all"
+                };
+                currentLibraryPage = 1;
+                renderLibrary();
+            });
+        }
+
+        if (libraryPrev) {
+            libraryPrev.addEventListener("click", function () {
+                if (currentLibraryPage <= 1) {
+                    return;
+                }
+
+                currentLibraryPage -= 1;
+                renderLibrary();
+            });
+        }
+
+        if (libraryNext) {
+            libraryNext.addEventListener("click", function () {
+                var filteredItems = getFilteredLibraryItems();
+                var pageCount = Math.max(1, Math.ceil(filteredItems.length / currentLibraryPageSize));
+
+                if (currentLibraryPage >= pageCount) {
+                    return;
+                }
+
+                currentLibraryPage += 1;
+                renderLibrary();
+            });
+        }
+
+        if (libraryPages) {
+            libraryPages.addEventListener("click", function (event) {
+                var pageButton = event.target.closest("[data-library-page]");
+                var nextPage;
+
+                if (!pageButton) {
+                    return;
+                }
+
+                nextPage = Number(pageButton.getAttribute("data-library-page"));
+
+                if (!nextPage) {
+                    return;
+                }
+
+                currentLibraryPage = nextPage;
+                renderLibrary();
+            });
+        }
+
+        window.addEventListener("resize", function () {
+            var nextPageSize = getLibraryPageSize();
+
+            if (nextPageSize === currentLibraryPageSize) {
+                return;
+            }
+
+            currentLibraryPageSize = nextPageSize;
+            currentLibraryPage = 1;
+            renderLibrary();
+        });
+
+        renderLibrary();
     }
 
     var horizontalSyncFrame = null;
