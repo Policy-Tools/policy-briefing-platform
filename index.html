@@ -36,27 +36,29 @@
     </video>
 </div>
 
-<div class="homepage-topbar">
-    <a class="site-logo-slot homepage-brand homepage-brand-text" href="index.html" aria-label="Home">Mixpo</a>
-    <div class="homepage-topbar-actions">
-        <a class="topbar-link login-link" href="onboarding/" data-auth-link="logged-out">Inloggen</a>
-        <button class="topbar-link topbar-link-button topbar-link-icon-button" type="button" data-auth-link="logged-in" data-dashboard-toggle aria-expanded="false" aria-controls="homepage-dashboard" aria-label="Open dashboard">
-            <span class="sr-only">Dashboard</span>
-            <span class="topbar-link-icon topbar-link-icon-dashboard" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </button>
-        <button class="menu-toggle menu-toggle-icon-only" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
-            <span class="sr-only">Menu</span>
-            <span class="menu-toggle-icon menu-toggle-icon-columns" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-            </span>
-        </button>
+<div class="homepage-topbar-shell">
+    <div class="homepage-topbar">
+        <a class="site-logo-slot homepage-brand homepage-brand-text" href="index.html" aria-label="Home">Mixpo</a>
+        <div class="homepage-topbar-actions">
+            <a class="topbar-link login-link" href="onboarding/" data-auth-link="logged-out">Inloggen</a>
+            <button class="topbar-link topbar-link-button topbar-link-icon-button" type="button" data-auth-link="logged-in" data-dashboard-toggle aria-expanded="false" aria-controls="homepage-dashboard" aria-label="Open dashboard">
+                <span class="sr-only">Dashboard</span>
+                <span class="topbar-link-icon topbar-link-icon-dashboard" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <button class="menu-toggle menu-toggle-icon-only" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-menu-toggle>
+                <span class="sr-only">Menu</span>
+                <span class="menu-toggle-icon menu-toggle-icon-columns" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
     </div>
 </div>
 
@@ -86,7 +88,6 @@
 
 <div class="homepage-shell">
     <main class="homepage-main">
-
         <section class="hot-topics" aria-labelledby="hot-topics-heading">
             <div class="section-atmosphere" aria-hidden="true">
                 <span class="section-smoke section-smoke-a"></span>
@@ -337,7 +338,7 @@
             </div>
         </section>
 
-        <section class="week-timeline-section legacy-homepage-block" aria-labelledby="week-timeline-heading" hidden aria-hidden="true">
+        <section class="week-timeline-section legacy-homepage-block" aria-labelledby="week-timeline-heading-old" hidden aria-hidden="true">
             <div class="section-atmosphere section-atmosphere-timeline" aria-hidden="true">
                 <span class="section-smoke section-smoke-c"></span>
                 <span class="section-smoke section-smoke-d"></span>
@@ -345,15 +346,7 @@
                 <span class="section-beam section-beam-d"></span>
             </div>
             <div class="week-timeline-sticky">
-                <div class="week-timeline-intro">
-                    <p class="eyebrow">Afgelopen week</p>
-                    <h2 id="week-timeline-heading">Van vandaag terug naar het begin van de week</h2>
-                    <p>
-                        Een omgekeerde tijdlijn die niet als slider voelt, maar als een bewegende
-                        redactiestrook: van recente urgentie terug naar waar het dossier begon te schuiven.
-                    </p>
-                </div>
-
+                <h2 id="week-timeline-heading-old" class="sr-only">Afgelopen week tijdlijn</h2>
                 <div class="week-timeline-window">
                     <div class="week-timeline-track" data-horizontal-track>
                         <article class="timeline-day timeline-day-current homepage-card-persist">
@@ -816,22 +809,139 @@
             </div>
         </section>
 
-        <footer class="homepage-footer">
-            <div>
-                <p class="eyebrow">Mixpo</p>
-                <h2>Sneller overzicht in beleid, uitvoering en bestuurlijke beweging.</h2>
+        <section class="week-timeline-section" aria-labelledby="week-timeline-heading">
+            <div class="section-atmosphere section-atmosphere-timeline" aria-hidden="true">
+                <span class="section-smoke section-smoke-c"></span>
+                <span class="section-smoke section-smoke-d"></span>
+                <span class="section-beam section-beam-c"></span>
+                <span class="section-beam section-beam-d"></span>
             </div>
-            <div class="homepage-footer-links">
-                <a href="index.html">Home</a>
-                <a href="briefings/">Briefings</a>
-                <a href="topics/">Thema's</a>
-                <a href="about/">Over ons</a>
+            <div class="week-timeline-sticky">
+                <h2 id="week-timeline-heading" class="sr-only">Afgelopen week tijdlijn</h2>
+                <div class="week-timeline-window">
+                    <div class="week-timeline-track" data-horizontal-track>
+                        <article class="timeline-day timeline-day-current homepage-card-persist">
+                            <span class="timeline-day-label">Vrijdag</span>
+                            <h3>Hot topic: coalitie, dekking en uitvoering vallen samen</h3>
+                            <p>
+                                NOS en RTL Nieuws leggen de politieke lijn bloot, terwijl beleidsduiding
+                                vooral zit in de uitvoeringsvraag.
+                            </p>
+                            <ul class="timeline-sources">
+                                <li>NOS</li>
+                                <li>RTL Nieuws</li>
+                                <li>Politico</li>
+                            </ul>
+                        </article>
+
+                        <div class="homepage-slot timeline-slot">
+                            <article class="timeline-day homepage-card-swap slot-general">
+                                <span class="timeline-day-label">Donderdag</span>
+                                <h3>Europese contouren werden binnenlands nieuws</h3>
+                                <p>
+                                    NU.nl en FD brachten het als losse ontwikkeling, maar in samenhang
+                                    werd zichtbaar dat de planning in Den Haag hierdoor opschuift.
+                                </p>
+                                <ul class="timeline-sources">
+                                    <li>NU.nl</li>
+                                    <li>FD</li>
+                                    <li>Euractiv</li>
+                                </ul>
+                            </article>
+
+                            <article class="timeline-day homepage-card-personal slot-personal">
+                                <span class="timeline-day-label">Donderdag</span>
+                                <h3>Defensie-uitgaven schuiven bij jou naar voren door NAVO- en begrotingsdruk</h3>
+                                <p>
+                                    Omdat defensie Ã©Ã©n van jouw voorkeursdossiers is, vervangt dit item
+                                    de algemene Europa-kaart in jouw volledige dashboardweergave.
+                                </p>
+                                <ul class="timeline-sources">
+                                    <li>NRC</li>
+                                    <li>Defensie</li>
+                                    <li>Politico</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <div class="homepage-slot timeline-slot">
+                            <article class="timeline-day homepage-card-swap slot-general">
+                                <span class="timeline-day-label">Woensdag</span>
+                                <h3>Nieuwe cijfers veranderden de politieke toon van het debat</h3>
+                                <p>
+                                    Niet de cijfers zelf, maar de interpretatie ervan zorgde voor
+                                    een ander frame in media, Kamer en departementen.
+                                </p>
+                                <ul class="timeline-sources">
+                                    <li>CBS</li>
+                                    <li>de Volkskrant</li>
+                                    <li>BNR</li>
+                                </ul>
+                            </article>
+
+                            <article class="timeline-day homepage-card-personal slot-personal">
+                                <span class="timeline-day-label">Woensdag</span>
+                                <h3>Belastingmaatregelen krijgen meer gewicht door dekking, uitvoering en planning</h3>
+                                <p>
+                                    Deze plaats wordt nu gevuld met een belastingkaart omdat die themalijn
+                                    in jouw profiel belangrijker is dan de algemene cijferduiding.
+                                </p>
+                                <ul class="timeline-sources">
+                                    <li>FD</li>
+                                    <li>NOS</li>
+                                    <li>Rijksoverheid</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <div class="homepage-slot timeline-slot">
+                            <article class="timeline-day homepage-card-swap slot-general">
+                                <span class="timeline-day-label">Dinsdag</span>
+                                <h3>Uitvoering kwam voor het eerst naar de voorgrond</h3>
+                                <p>
+                                    Een ogenschijnlijk technische update groeide uit tot kantelpunt,
+                                    omdat de gevolgen voor gemeenten en uitvoering concreter werden.
+                                </p>
+                                <ul class="timeline-sources">
+                                    <li>VNG</li>
+                                    <li>NU.nl</li>
+                                    <li>NRC</li>
+                                </ul>
+                            </article>
+
+                            <article class="timeline-day homepage-card-personal slot-personal">
+                                <span class="timeline-day-label">Dinsdag</span>
+                                <h3>Vergunningen en stikstof schuiven omhoog door regionale druk en termijnen</h3>
+                                <p>
+                                    In jouw persoonlijke stand wint deze vergunningenkaart het van de
+                                    algemene uitvoeringskaart omdat dit thema direct op jouw voorkeuren aansluit.
+                                </p>
+                                <ul class="timeline-sources">
+                                    <li>Provincies</li>
+                                    <li>BNR</li>
+                                    <li>Trouw</li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <article class="timeline-day homepage-card-persist">
+                            <span class="timeline-day-label">Maandag</span>
+                            <h3>De eerste signalen zaten nog verstopt in verspreide berichtgeving</h3>
+                            <p>
+                                Los van elkaar klein, maar samen het begin van een dossierbeweging
+                                die pas later in de week echt zichtbaar werd.
+                            </p>
+                            <ul class="timeline-sources">
+                                <li>ANP</li>
+                                <li>NOS</li>
+                                <li>EU Observer</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
             </div>
-            <p class="homepage-footer-copy">
-                Mixpo bundelt signalen, context en snelle briefings voor professionals die verbanden willen zien
-                zonder eerst door tientallen bronnen te hoeven gaan.
-            </p>
-        </footer>
+        </section>
+
     </main>
 </div>
 

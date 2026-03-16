@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var dashboardClose = document.querySelector("[data-dashboard-close]");
     var dashboardBackdrop = document.querySelector("[data-home-dashboard-backdrop]");
     var dashboardExpand = document.querySelector("[data-dashboard-expand]");
+    var homepageShell = document.querySelector(".homepage-shell");
     var horizontalSections = document.querySelectorAll("[data-horizontal-section]");
     var hotTopicsRotator = document.querySelector("[data-hot-topics-rotator]");
     var hotTopicSlides = hotTopicsRotator ? hotTopicsRotator.querySelectorAll("[data-hot-topic-slide]") : [];
@@ -336,6 +337,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
+        setHotTopic(hotTopicIndex);
+
         document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 if (hotTopicTimer) {
@@ -640,7 +643,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (horizontalSections.length) {
         syncHorizontalSections();
-        window.addEventListener("scroll", scheduleHorizontalSectionsSync, { passive: true });
+        if (homepageShell) {
+            homepageShell.addEventListener("scroll", scheduleHorizontalSectionsSync, { passive: true });
+        } else {
+            window.addEventListener("scroll", scheduleHorizontalSectionsSync, { passive: true });
+        }
         window.addEventListener("resize", scheduleHorizontalSectionsSync);
     }
 });
